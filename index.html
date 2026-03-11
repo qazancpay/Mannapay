@@ -174,13 +174,12 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .reward-msg.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 /* --- NAVİQASİYA PANELİ (YENİLƏNMİŞ UI İKONLARI İLƏ) --- */
-.menu{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:92%;max-width:400px; display:flex;justify-content:space-between;background:var(--menu-bg);padding:8px; border-radius:24px;box-shadow:0 8px 25px rgba(0,0,0,.15);backdrop-filter:blur(10px);z-index: 999;border: 1px solid var(--card-border);transition: bottom 0.3s, opacity 0.3s;}
-.menu.hidden-by-keyboard { bottom: -100px; opacity: 0; pointer-events: none; } /* KLAVIATURA ÜÇÜN YENİ SİNF */
+.menu{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:92%;max-width:400px; display:flex;justify-content:space-between;background:var(--menu-bg);padding:8px; border-radius:24px;box-shadow:0 8px 25px rgba(0,0,0,.15);backdrop-filter:blur(10px);z-index: 999;border: 1px solid var(--card-border);}
 .menu button{flex:1;margin:0 4px; padding: 8px 2px;border:none;border-radius:18px;background:transparent;color:var(--text-dark);cursor: pointer;transition:0.3s;display: flex;flex-direction: column;align-items: center;justify-content: center;height: 60px; opacity: 0.6;}
 .menu button .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; transition: 0.3s; stroke-width: 2.2px; }
 .menu button .nav-text { font-size: 11px; font-weight: 800; line-height: 1.2; }
 .menu button.active{background:linear-gradient(135deg,var(--btn-gradient-start),var(--btn-gradient-end));color: var(--text-light);box-shadow:0 6px 15px var(--btn-shadow);cursor: default; pointer-events: none; opacity: 1;transform: translateY(-5px);}
-.menu button.active .nav-icon { stroke-width: 2.5px; } 
+.menu button.active .nav-icon { stroke-width: 2.5px; } /* Aktiv olanda ikon biraz daha qalınlaşır */
 .menu button:not(.active):hover { opacity: 1; transform: translateY(-2px); }
 
 /* --- PROFIL SƏHİFƏSİ & AYARLAR STİLİ --- */
@@ -438,7 +437,7 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
       </div>
     </div>
     <div class="form" id="form">
-      <button id="backBtn" style="background:none;border:none;color:var(--accent);font-weight:800;font-size:16px;box-shadow:none; justify-content:flex-start; padding-left:0;">
+      <button id="backBtn" style="background:none;border:none;color:var(--accent);font-weight:800;font-size:16px;box-shadow:none; justify-content:flex-start; padding: 10px 10px 10px 0; width: max-content; margin-top: 0;">
         <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
         <span data-translate-key="back">Geri</span>
       </button>
@@ -574,7 +573,7 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
 </div>
 
 <script>
-// İKONLARI AKTİVLƏŞDİRMƏK (ƏN VACİB KOD)
+// İKONLARI AKTİVLƏŞDİRMƏK
 lucide.createIcons();
 
 function safeRemove(k){try{localStorage.removeItem(k);}catch(e){}}
@@ -592,7 +591,7 @@ function applyTheme(isDark) {
         themeThumb.innerHTML = '<i data-lucide="sun" style="width:14px;height:14px;"></i>'; 
         safeSet(THEME_KEY, 'light');
     }
-    lucide.createIcons(); // Ikon yenilənəndə təzədən render edirik
+    lucide.createIcons(); 
 }
 function toggleTheme() {
     const isDark = body.classList.contains('dark-theme');
@@ -620,11 +619,11 @@ const CURRENCIES = {
 
 const AZN_REWARD = 0.001; 
 const AZN_TASK_REWARD = 0.1; 
-const AZN_10K_REWARD = 100; // Yeni Premium Görev Məbləği
+const AZN_10K_REWARD = 100;
 
 const BAL_KEY='bal',COUNT_KEY='cnt',RESET_KEY='resetTime';
 const JOIN_KEY='joined_manat_pay'; 
-const CLAIMED_10K_KEY = 'task_10k_claimed'; // 10k reklam yaddaşı
+const CLAIMED_10K_KEY = 'task_10k_claimed'; 
 const TOTAL_ADS_KEY = 'totalAdsWatched';
 const TOTAL_AD_EARNINGS_KEY = 'totalAdEarnings';
 const TOTAL_TASK_EARNINGS_KEY = 'totalTaskEarnings';
@@ -1055,7 +1054,7 @@ function updateTaskButtons() {
             claim10kBtn.disabled = true;
         }
     }
-    lucide.createIcons(); // Ikonları yenidən yaradırıq
+    lucide.createIcons(); 
 }
 
 function setPlaceholders(methodType) {
@@ -1395,17 +1394,24 @@ setTimeout(()=>{
   s.style.opacity="0"; setTimeout(()=>s.style.display="none",700);
 },3000);
 
-// --- KLAVİATURA İZLƏYİCİSİ (AŞAĞI MENYUNU GİZLƏTMƏK ÜÇÜN) ---
-const allInputs = document.querySelectorAll('input');
+// --- YENİ: KLAVİATURA (KEYBOARD) DETEKTORU ---
+// Ekranın ölçüsü kiçildikdə (Klaviatura açılanda) menyunu gizlət, 
+// bağlandıqda (Geri düyməsi sıxıldıqda və ya focusdan çıxdıqda) göstər
 const navMenu = document.querySelector('.menu');
+const initialWindowHeight = window.innerHeight;
 
-allInputs.forEach(input => {
-    input.addEventListener('focus', () => {
-        navMenu.classList.add('hidden-by-keyboard');
-    });
-    input.addEventListener('blur', () => {
-        navMenu.classList.remove('hidden-by-keyboard');
-    });
+window.addEventListener('resize', () => {
+    // Əgər ekranın hündürlüyü əvvəlkindən xeyli kiçildisə (klaviatura açıldı)
+    if (window.innerHeight < initialWindowHeight - 100) {
+        navMenu.style.display = 'none';
+    } else {
+        // Ekran normal formasına qayıtdı (Klaviatura bağlandı)
+        navMenu.style.display = 'flex';
+        // Əgər istifadəçi geri düyməsini sıxaraq klaviaturanı bağlayıbsa, focusu inputdan götür
+        if(document.activeElement && document.activeElement.tagName === 'INPUT'){
+            document.activeElement.blur();
+        }
+    }
 });
 </script>
 </body>
