@@ -11,6 +11,7 @@
 <style>
 /* --- RƏNG DƏYİŞƏNLƏRİ (VARS) - MANAT PAY TEMA --- */
 :root {
+  /* LIGHT TEMA (Ağ/Yaşıl) */
   --bg-start: #e8f5e9; 
   --bg-end: #ffffff;   
   --card-bg: rgba(255, 255, 255, 0.9); 
@@ -27,6 +28,7 @@
   --loader-text: #27ae60;
   --loader-circle: rgba(46, 204, 113, 0.2);
 
+  /* Yaşıl Gradientlər */
   --btn-gradient-start: #2ecc71; 
   --btn-gradient-end: #27ae60;   
   --btn-shadow: rgba(46, 204, 113, 0.4); 
@@ -37,6 +39,7 @@
   --notification-text: #ffffff; 
 }
 
+/* DARK TEMA (Qara/Yaşıl) */
 body.dark-theme {
   --bg-start: #0f1a15; 
   --bg-end: #1a2520;   
@@ -71,22 +74,35 @@ body{
   transition: background-color 0.5s, color 0.5s; 
   padding-bottom: 90px; 
 }
-@keyframes bgMove{0%{background-position:0% 50;}50%{background-position:100% 50;}100%{background-position:0% 50;}}
+@keyframes bgMove{
+  0%{background-position:0% 50;}
+  50%{background-position:100% 50;}
+  100%{background-position:0% 50;}
+}
 
 .container{max-width:480px;margin:auto;padding:50px 20px 20px;} 
+
 .page{display:none;animation:fadeIn .4s ease;}
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
 
+/* Balans və Kart Dizaynı */
 .balance-card, .ad-card, .profile-card{
-  background:var(--card-bg); border-radius:25px; padding:25px 20px; margin-bottom:20px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.1); backdrop-filter:blur(14px); text-align:center;
-  border:1px solid var(--card-border); transition: background-color 0.5s, box-shadow 0.5s;
+  background:var(--card-bg);
+  border-radius:25px;
+  padding:25px 20px;
+  margin-bottom:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.1);
+  backdrop-filter:blur(14px);
+  text-align:center;
+  border:1px solid var(--card-border);
+  transition: background-color 0.5s, box-shadow 0.5s;
 }
 .balance-card h3{font-size:16px;color:var(--accent);margin-bottom:8px;letter-spacing:0.5px; font-weight: 800;}
 .balance-card .amount{font-size:36px;font-weight:800;margin-top:5px;color:var(--text-dark);text-shadow:0 2px 10px rgba(0,0,0,0.05);}
 .balance-card .usd{font-size:14px;color:var(--text-dark);opacity:0.7;margin-top:4px; font-weight: 600;}
 
+/* Metod Siyahısı */
 .method-list{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;justify-content:space-around;}
 .method{flex:1 1 calc(50% - 5px); padding:14px;border-radius:16px;background:linear-gradient(135deg,var(--btn-gradient-start),var(--btn-gradient-end)); color:var(--text-light);text-align:center;font-weight:700;cursor:pointer;transition:0.3s;display:flex;flex-direction: column;align-items: center;justify-content: center;height: 100px;position: relative;overflow: hidden; }
 .method:hover{transform:scale(1.03);box-shadow:0 6px 15px rgba(46, 204, 113, 0.3);}
@@ -99,9 +115,12 @@ body{
 .ad-card h2{font-size:18px;color:var(--text-dark);margin-bottom:6px; font-weight: 800;}
 .ad-card p{margin:4px 0;color:var(--text-dark);font-size:13px; font-weight: 600;}
 
+/* --- YENİ GÖREVLƏR SƏHİFƏSİ (TASKS PAGE) STİLLƏRİ --- */
 .task-list { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
 .task-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 20px; position: relative; overflow: hidden; text-align: left; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 8px 25px rgba(0,0,0,0.05); }
 .task-item:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+
+/* Premium Task Xüsusi Stili */
 .task-item.premium { background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 165, 0, 0.05)); border: 1px solid rgba(243, 156, 18, 0.4); }
 body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(0, 0, 0, 0.2)); border: 1px solid rgba(243, 156, 18, 0.3); }
 
@@ -115,16 +134,20 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 
 .task-desc { font-size: 14px; color: var(--text-muted); font-weight: 600; margin-bottom: 18px; line-height: 1.4; }
 
+/* Proqress Bar Task üçün */
 .task-progress-wrap { margin-bottom: 18px; background: var(--bg-start); padding: 12px; border-radius: 12px; border: 1px solid var(--card-border); }
 .task-progress-bar { height: 10px; background: rgba(150,150,150,0.2); border-radius: 6px; overflow: hidden; }
 .task-progress-fill { height: 100%; background: linear-gradient(90deg, #f1c40f, #f39c12); width: 0%; transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .task-progress-text { display: flex; justify-content: space-between; font-size: 12px; font-weight: 800; color: var(--text-dark); margin-top: 8px; }
 
+/* Görev Düymələri */
 .task-btn { width: 100%; padding: 14px; font-size: 15px; font-weight: 800; border: none; border-radius: 14px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px;}
 .task-btn.action { background: linear-gradient(90deg, #3498db, #2980b9); color: white; box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3); }
 .task-btn.action:hover { transform: scale(1.02); box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4); }
+
 .task-btn.claim { background: linear-gradient(90deg, #2ecc71, #27ae60); color: white; box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3); animation: pulseBtn 2s infinite; }
 .task-btn.claim:hover { transform: scale(1.02); }
+
 .task-btn.locked { background: var(--bg-start); color: var(--text-muted); cursor: not-allowed; box-shadow: none; border: 1px solid var(--card-border); opacity: 0.8; }
 .task-btn.completed { background: rgba(150,150,150,0.2); color: var(--text-muted); cursor: not-allowed; box-shadow: none; border: 1px solid rgba(150,150,150,0.1); }
 .task-btn.waiting { background: #f1c40f !important; color: #fff !important; cursor: wait !important; opacity: 0.9; box-shadow: none !important; }
@@ -138,6 +161,7 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .progress{height:12px;background:var(--progress-bg);border-radius:8px;overflow:hidden;margin-top:15px;}
 .progress-fill{height:100%;background:var(--accent);width:0%;transition:width .5s cubic-bezier(0.4, 0, 0.2, 1);} 
 
+/* REKLAM DÜYMƏSİ */
 .ad-btn{width:100%;margin-top:15px;padding:14px;font-size:15px;font-weight:800;border:none;border-radius:16px;color:var(--text-light);cursor:pointer;transition:0.3s;background:linear-gradient(90deg,var(--btn-gradient-start),var(--btn-gradient-end));box-shadow:0 8px 20px var(--btn-shadow);position: relative; overflow: hidden; z-index: 1; display:flex; align-items:center; justify-content:center; gap:8px;}
 .ad-btn:hover:not(.waiting){transform:scale(1.02);box-shadow:0 10px 25px var(--btn-shadow);}
 .ad-btn.waiting {background: #bdc3c7 !important;color: #2c3e50 !important;cursor: not-allowed;box-shadow: none !important;position: relative; overflow: hidden; }
@@ -150,6 +174,7 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .reward-msg {position: absolute;top: -10px; left: 50%;transform: translateX(-50%) translateY(-100%); background: var(--notification-bg); color: var(--notification-text);padding: 10px 20px;border-radius: 12px;box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);font-weight: 800;font-size: 14px;opacity: 0;z-index: 100; white-space: nowrap;transition: opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .reward-msg.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* --- NAVİQASİYA PANELİ (YENİLƏNMİŞ UI İKONLARI İLƏ) --- */
 .menu{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);width:92%;max-width:400px; display:flex;justify-content:space-between;background:var(--menu-bg);padding:8px; border-radius:24px;box-shadow:0 8px 25px rgba(0,0,0,.15);backdrop-filter:blur(10px);z-index: 999;border: 1px solid var(--card-border);}
 .menu button{flex:1;margin:0 4px; padding: 8px 2px;border:none;border-radius:18px;background:transparent;color:var(--text-dark);cursor: pointer;transition:0.3s;display: flex;flex-direction: column;align-items: center;justify-content: center;height: 60px; opacity: 0.6;}
 .menu button .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; transition: 0.3s; stroke-width: 2.2px; }
@@ -158,14 +183,20 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .menu button.active .nav-icon { stroke-width: 2.5px; } 
 .menu button:not(.active):hover { opacity: 1; transform: translateY(-2px); }
 
+/* --- PROFIL SƏHİFƏSİ & AYARLAR STİLİ --- */
 .profile-header { display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 25px; position: relative;}
+
+/* PROFIL AVATAR VE SEKIL */
 .profile-avatar { width: 85px; height: 85px; background: linear-gradient(135deg, var(--btn-gradient-start), var(--btn-gradient-end)); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 12px; box-shadow: 0 8px 20px var(--btn-shadow); position: relative;}
 .profile-avatar .default-icon { width: 40px; height: 40px; stroke-width: 2px;}
 .profile-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none; }
 .profile-avatar.has-image img { display: block; }
 .profile-avatar.has-image .default-icon { display: none; }
+
 .profile-name-container { display: flex; align-items: center; justify-content: center; gap: 8px;}
 .profile-name { font-size: 20px; font-weight: 800; color: var(--text-dark); }
+
+/* İSTİFADƏÇİ ID STİLİ */
 .profile-id { font-size: 14px; font-weight: 800; color: var(--text-muted); margin-top: 4px; pointer-events: none; }
 
 .settings-list { text-align: left; background: var(--bg-start); border-radius: 16px; padding: 5px 15px; margin-bottom: 20px; border: 1px solid var(--card-border); }
@@ -175,6 +206,7 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .setting-icon { display: flex; align-items: center; justify-content: center; }
 .setting-icon i { width: 20px; height: 20px; color: var(--accent); }
 
+/* Theme Toggle Button */
 .toggle-switch { width: 50px; height: 28px; background-color: #ccc; border-radius: 30px; position: relative; cursor: pointer; transition: 0.3s; }
 body.dark-theme .toggle-switch { background-color: var(--accent); }
 .toggle-thumb { width: 22px; height: 22px; background-color: #fff; border-radius: 50%; position: absolute; top: 3px; left: 3px; transition: 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -182,9 +214,11 @@ body.dark-theme .toggle-thumb { transform: translateX(22px); }
 .toggle-thumb i { width: 14px; height: 14px; color: #f39c12; }
 body.dark-theme .toggle-thumb i { color: #2c3e50; }
 
+/* Language Select */
 .lang-select { background: transparent; border: 1px solid var(--card-border); color: var(--text-dark); font-weight: 700; padding: 5px 10px; border-radius: 8px; outline: none; cursor: pointer;}
 .lang-select option { background: var(--card-bg); color: var(--text-dark); }
 
+/* Profile Action Buttons */
 .profile-btn { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 14px; font-weight: 800; font-size: 15px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; border: none; }
 .profile-btn i { width: 20px; height: 20px; }
 .btn-share { background: linear-gradient(90deg, #f39c12, #e67e22); color: white; box-shadow: 0 6px 15px rgba(243, 156, 18, 0.3); }
@@ -192,6 +226,7 @@ body.dark-theme .toggle-thumb i { color: #2c3e50; }
 .btn-support { background: linear-gradient(90deg, #9b59b6, #8e44ad); color: white; box-shadow: 0 6px 15px rgba(155, 89, 182, 0.3); }
 .profile-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
+/* Stats View */
 #statsView { display: none; text-align: left; animation: fadeIn .3s ease; }
 .back-btn { background: none; border: none; color: var(--accent); font-weight: 800; font-size: 16px; cursor: pointer; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
 .back-btn i { width: 18px; height: 18px; }
@@ -212,6 +247,7 @@ body.dark-theme .toggle-thumb i { color: #2c3e50; }
 .alert.error{background:#fadbd8;color:#c0392b;}
 .alert.success{background:#d5f5e3;color:#27ae60;}
 
+/* ÇIXARIŞ TARİXÇƏSİ STİLİ */
 .history-card { background: var(--card-bg); border-radius: 20px; padding: 18px 15px; margin-top: 25px; border: 1px solid var(--card-border); text-align: left; }
 .history-title { font-size: 16px; font-weight: 800; color: var(--text-dark); margin-bottom: 12px; text-align: center; }
 .history-list { display: flex; flex-direction: column; gap: 10px; }
@@ -224,6 +260,7 @@ body.dark-theme .toggle-thumb i { color: #2c3e50; }
 .history-status { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 8px; background: rgba(243, 156, 18, 0.15); color: #f39c12; }
 .history-empty { text-align: center; font-size: 14px; color: var(--text-muted); padding: 15px; font-weight: 600; }
 
+/* BAŞLANĞIC EKRAN STİLİ */
 #loadingScreen{position:fixed;top:0; left:0;width:100%; height:100%;background:var(--loader-bg); display:flex;justify-content:center;align-items:center;z-index:99999;transition:opacity .7s ease;}
 .loader-box{text-align:center;animation:fadeIn .8s ease;position:relative;}
 .shine-circle{position:absolute;width:250px; height:250px;top:-80px; left:50%;transform:translateX(-50%);background:radial-gradient(circle, var(--loader-circle), transparent 70%);filter:blur(30px);animation:pulse 3s infinite ease-in-out;}
@@ -237,14 +274,17 @@ body.dark-theme .toggle-thumb i { color: #2c3e50; }
 .loader-text{margin-top:18px;font-size:16px;font-weight:700;color:var(--loader-text);letter-spacing:2px;animation:blink 1.5s infinite;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:.6;}}
 
+/* TAPŞIRIQ BİLDİRİŞİ */
 #taskNotification {position: fixed;top: 20px;left: 50%;transform: translate(-50%, -100px); background: var(--notification-bg);color: var(--notification-text);padding: 15px 25px;border-radius: 14px;box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);font-weight: 800;font-size: 15px;opacity: 0;z-index: 10000;transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center;border: 2px solid rgba(255,255,255,0.2);}
 .notification-show {opacity: 1 !important;transform: translate(-50%, 0) !important; }
 .notification-hide {opacity: 0;transform: translate(-50%, -100px); }
+
 </style>
 </head>
 <body id="body">
 
 <script>
+// TEMA TƏTBİQİ (Hər kəs üçün ortaq ola bilər, cihazın yaddaşında qalır)
 function safeGet(k,d=0){try{return JSON.parse(localStorage.getItem(k))??d;}catch{return d;}}
 function safeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 const THEME_KEY = 'theme';
@@ -256,12 +296,17 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
   <div class="loader-box">
     <div class="shine-circle"></div>
     <div class="loader-title">Manat Pay</div>
-    <div class="loader-bar"><div class="loader-fill"></div><div class="glow"></div></div>
+    <div class="loader-bar">
+      <div class="loader-fill"></div>
+      <div class="glow"></div>
+    </div>
     <div class="loader-text" data-translate-key="loading">Yüklənir...</div>
   </div>
 </div>
 
-<div id="taskNotification" class="notification-hide"><span id="taskNotificationText"></span></div>
+<div id="taskNotification" class="notification-hide">
+    <span id="taskNotificationText"></span>
+</div>
 
 <div class="container">
   <div id="adsPage" class="page active">
@@ -282,7 +327,10 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
       <div class="progress"><div class="progress-fill" id="progress"></div></div>
       <p style="margin-top:8px; font-weight:700;" data-translate-key="progressText">İrəliləyiş: <span id="progressTextSpan">0/100</span></p>
       <button id="adBtn" class="ad-btn">
-        <span class="ad-btn-content"><i data-lucide="play-circle"></i><span data-translate-key="watchAd">Reklam İzle</span></span>
+        <span class="ad-btn-content">
+          <i data-lucide="play-circle"></i>
+          <span data-translate-key="watchAd">Reklam İzle</span>
+        </span>
       </button>
       <div id="msg"></div> 
     </div>
@@ -296,27 +344,43 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
     </div>
 
     <div class="task-list">
+        
         <div class="task-item premium">
             <div class="task-header">
-                <div class="task-title"><div class="task-icon task-icon-premium"><i data-lucide="crown" style="width:18px;height:18px;"></i></div><span data-translate-key="premiumTaskTitle">Premium Görev</span></div>
+                <div class="task-title">
+                  <div class="task-icon task-icon-premium"><i data-lucide="crown" style="width:18px;height:18px;"></i></div>
+                  <span data-translate-key="premiumTaskTitle">Premium Görev</span>
+                </div>
                 <div class="task-reward-badge" id="task10kRewardBadge">100 ₼</div>
             </div>
             <div class="task-desc" data-translate-key="task10kDesc">10.000 Reklam izlə və böyük mükafatı qazan!</div>
+            
             <div class="task-progress-wrap">
                 <div class="task-progress-bar"><div class="task-progress-fill" id="task10kProgressFill"></div></div>
-                <div class="task-progress-text"><span data-translate-key="progressText">İrəliləyiş:</span><span id="task10kProgressText">0 / 10000</span></div>
+                <div class="task-progress-text">
+                    <span data-translate-key="progressText">İrəliləyiş:</span>
+                    <span id="task10kProgressText">0 / 10000</span>
+                </div>
             </div>
+            
             <button id="claim10kBtn" class="task-btn locked" data-translate-key="lockedBtn">Kilidli</button>
         </div>
 
         <div class="task-item">
             <div class="task-header">
-                <div class="task-title"><div class="task-icon task-icon-standard"><i data-lucide="megaphone" style="width:16px;height:16px;"></i></div><span data-translate-key="standardTaskTitle">Standart Görev</span></div>
+                <div class="task-title">
+                  <div class="task-icon task-icon-standard"><i data-lucide="megaphone" style="width:16px;height:16px;"></i></div>
+                  <span data-translate-key="standardTaskTitle">Standart Görev</span>
+                </div>
                 <div class="task-reward-badge" id="taskJoinRewardBadge">0.1000 ₼</div>
             </div>
             <div class="task-desc" data-translate-key="taskJoinDesc">Rəsmi Telegram kanalımıza qoşul və qazan!</div>
-            <button id="joinBtn" class="task-btn action"><i data-lucide="send" style="width:18px;height:18px;"></i><span data-translate-key="joinChannel">Kanala Qoşul</span></button>
+            <button id="joinBtn" class="task-btn action">
+              <i data-lucide="send" style="width:18px;height:18px;"></i>
+              <span data-translate-key="joinChannel">Kanala Qoşul</span>
+            </button>
         </div>
+
     </div>
   </div>
   
@@ -328,65 +392,136 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
     </div>
     <h2 style="text-align:center;margin-bottom:12px;color:var(--text-dark);font-weight:800;" data-translate-key="withdrawTitle">Çıxarış</h2>
     <div class="method-list" id="methods">
-      <div class="method" data-type="m10"><img src="https://i.postimg.cc/Kj94hVNG/unnamed.png" class="method-logo"><span class="method-text">M10</span><span class="min-withdraw-label" data-min-key="m10">4 ₼</span></div>
-      <div class="method" data-type="azercell"><img src="https://i.postimg.cc/qM5gmPqZ/applogo512.png" class="method-logo"><span class="method-text">Azercell</span><span class="min-withdraw-label" data-min-key="azercell">4 ₼</span></div>
-      <div class="method" data-type="bakcell"><img src="https://i.postimg.cc/Pqmx5N49/images.jpg" class="method-logo"><span class="method-text">Bakcell</span><span class="min-withdraw-label" data-min-key="bakcell">4 ₼</span></div>
-      <div class="method" data-type="nar"><img src="https://i.postimg.cc/4NmxhWPy/images.png" class="method-logo"><span class="method-text">Nar</span><span class="min-withdraw-label" data-min-key="nar">4 ₼</span></div>
-      <div class="method" data-type="bank"><img src="https://i.postimg.cc/L6H0yWwZ/42492-bank-1024.png" class="method-logo bank-logo"><span class="method-text" data-translate-key="bankCard">Bank</span><span class="min-withdraw-label" data-min-key="bank">4 ₼</span></div>
-      <div class="method" data-type="usdt"><img src="https://i.postimg.cc/X7HxsY98/Tether-USDT-Logo.png" class="method-logo"><span class="method-text">USDT</span><span class="min-withdraw-label" data-min-key="usdt">4 ₼</span></div>
+      <div class="method" data-type="m10">
+          <img src="https://i.postimg.cc/Kj94hVNG/unnamed.png" alt="M10 Logo" class="method-logo">
+          <span class="method-text">M10</span>
+          <span class="min-withdraw-label" data-min-key="m10">4 ₼</span>
+      </div>
+      <div class="method" data-type="azercell">
+          <img src="https://i.postimg.cc/qM5gmPqZ/applogo512.png" alt="Azercell Logo" class="method-logo">
+          <span class="method-text">Azercell</span>
+          <span class="min-withdraw-label" data-min-key="azercell">4 ₼</span>
+      </div>
+      <div class="method" data-type="bakcell">
+          <img src="https://i.postimg.cc/Pqmx5N49/images.jpg" alt="Bakcell Logo" class="method-logo">
+          <span class="method-text">Bakcell</span>
+          <span class="min-withdraw-label" data-min-key="bakcell">4 ₼</span>
+      </div>
+      <div class="method" data-type="nar">
+          <img src="https://i.postimg.cc/4NmxhWPy/images.png" alt="Nar Logo" class="method-logo">
+          <span class="method-text">Nar</span>
+          <span class="min-withdraw-label" data-min-key="nar">4 ₼</span>
+      </div>
+      <div class="method" data-type="bank">
+          <img src="https://i.postimg.cc/L6H0yWwZ/42492-bank-1024.png" alt="Bank Logo" class="method-logo bank-logo">
+          <span class="method-text" data-translate-key="bankCard">Bank</span>
+          <span class="min-withdraw-label" data-min-key="bank">4 ₼</span>
+      </div>
+      <div class="method" data-type="usdt">
+          <img src="https://i.postimg.cc/X7HxsY98/Tether-USDT-Logo.png" alt="USDT Logo" class="method-logo">
+          <span class="method-text">USDT</span>
+          <span class="min-withdraw-label" data-min-key="usdt">4 ₼</span>
+      </div>
     </div>
     <div class="form" id="form">
       <button id="backBtn" style="background:none;border:none;color:var(--accent);font-weight:800;font-size:16px;box-shadow:none; justify-content:flex-start; padding: 10px 10px 10px 0; width: max-content; margin-top: 0;">
-        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i><span data-translate-key="back">Geri</span>
+        <i data-lucide="arrow-left" style="width:20px;height:20px;"></i>
+        <span data-translate-key="back">Geri</span>
       </button>
       <input id="details" placeholder="">
       <input id="amount" type="number" placeholder="Məbləğ">
-      <button id="withdrawBtn"><i data-lucide="credit-card"></i><span data-translate-key="withdraw">Çıxarış Et</span></button>
+      <button id="withdrawBtn">
+        <i data-lucide="credit-card"></i>
+        <span data-translate-key="withdraw">Çıxarış Et</span>
+      </button>
       <div id="alert" class="alert"></div>
     </div>
+
     <div class="history-card" id="historyCard">
         <h3 class="history-title" data-translate-key="withdrawHistory">Çıxarış Tarixçəsi</h3>
         <div class="history-list" id="historyList"></div>
     </div>
+
   </div>
 
   <div id="profilePage" class="page">
     <div class="profile-card" id="profileMainView">
         <div class="profile-header">
-            <div class="profile-avatar"><i data-lucide="user" class="default-icon"></i><img id="profileImage" src="" alt="Profile"></div>
-            <div class="profile-name-container" id="displayNameContainer"><div class="profile-name" id="displayUsername" data-translate-key="guestUser">İstifadəçi</div></div>
+            <div class="profile-avatar">
+                <i data-lucide="user" class="default-icon"></i>
+                <img id="profileImage" src="" alt="Profile">
+            </div>
+            
+            <div class="profile-name-container" id="displayNameContainer">
+                <div class="profile-name" id="displayUsername" data-translate-key="guestUser">İstifadəçi</div>
+            </div>
             <div class="profile-id">ID: <span id="displayUserId"></span></div>
         </div>
+
         <div class="settings-list">
             <div class="setting-item">
-                <div class="setting-info"><span class="setting-icon"><i data-lucide="palette"></i></span><span data-translate-key="theme">Tema</span></div>
-                <div class="toggle-switch" onclick="toggleTheme()"><div class="toggle-thumb" id="themeThumb"><i data-lucide="sun"></i></div></div>
+                <div class="setting-info">
+                    <span class="setting-icon"><i data-lucide="palette"></i></span>
+                    <span data-translate-key="theme">Tema</span>
+                </div>
+                <div class="toggle-switch" onclick="toggleTheme()">
+                    <div class="toggle-thumb" id="themeThumb"><i data-lucide="sun"></i></div>
+                </div>
             </div>
+            
             <div class="setting-item">
-                <div class="setting-info"><span class="setting-icon"><i data-lucide="globe"></i></span><span data-translate-key="language">Dil</span></div>
+                <div class="setting-info">
+                    <span class="setting-icon"><i data-lucide="globe"></i></span>
+                    <span data-translate-key="language">Dil</span>
+                </div>
                 <select class="lang-select" id="langSelect" onchange="setLang(this.value)">
-                    <option value="az">AZ</option><option value="en">EN</option><option value="tr">TR</option><option value="ru">RU</option>
+                    <option value="az">AZ</option>
+                    <option value="en">EN</option>
+                    <option value="tr">TR</option>
+                    <option value="ru">RU</option>
                 </select>
             </div>
         </div>
-        <button class="profile-btn btn-share" onclick="shareOnTelegram()"><i data-lucide="users"></i> <span data-translate-key="shareBtn">Dostlarını Dəvət Et</span></button>
-        <button class="profile-btn btn-stats" onclick="showStatsView()"><i data-lucide="bar-chart-2"></i> <span data-translate-key="statistics">Statistika</span></button>
-        <button class="profile-btn btn-support" onclick="openSupport()"><i data-lucide="headphones"></i> <span data-translate-key="support">Dəstək</span></button>
+
+        <button class="profile-btn btn-share" onclick="shareOnTelegram()">
+            <i data-lucide="users"></i> <span data-translate-key="shareBtn">Dostlarını Dəvət Et</span>
+        </button>
+        
+        <button class="profile-btn btn-stats" onclick="showStatsView()">
+            <i data-lucide="bar-chart-2"></i> <span data-translate-key="statistics">Statistika</span>
+        </button>
+        <button class="profile-btn btn-support" onclick="openSupport()">
+            <i data-lucide="headphones"></i> <span data-translate-key="support">Dəstək</span>
+        </button>
     </div>
 
     <div class="profile-card" id="statsView">
-        <button class="back-btn" onclick="hideStatsView()"><i data-lucide="arrow-left"></i> <span data-translate-key="back">Geri</span></button>
+        <button class="back-btn" onclick="hideStatsView()">
+          <i data-lucide="arrow-left"></i> <span data-translate-key="back">Geri</span>
+        </button>
         <h2 style="text-align:center;margin-bottom:20px;color:var(--text-dark);font-weight:800;" data-translate-key="statistics">Statistika</h2>
+        
         <div class="stat-box">
-            <div><div class="stat-box-title" data-translate-key="statTotalAds">İzlənən Ümumi Reklam</div><div class="stat-box-value" id="statAdsWatched">0</div></div>
+            <div>
+                <div class="stat-box-title" data-translate-key="statTotalAds">İzlənən Ümumi Reklam</div>
+                <div class="stat-box-value" id="statAdsWatched">0</div>
+            </div>
             <div class="stat-icon"><i data-lucide="tv"></i></div>
         </div>
+        
         <div class="stat-box">
-            <div><div class="stat-box-title" data-translate-key="statAdEarnings">Reklam Qazancı</div><div class="stat-box-value"><span id="statAdEarningsVal">0.0000</span> <span class="stat-currency">₼</span></div></div>
+            <div>
+                <div class="stat-box-title" data-translate-key="statAdEarnings">Reklam Qazancı</div>
+                <div class="stat-box-value"><span id="statAdEarningsVal">0.0000</span> <span class="stat-currency">₼</span></div>
+            </div>
             <div class="stat-icon"><i data-lucide="coins"></i></div>
         </div>
+        
         <div class="stat-box">
-            <div><div class="stat-box-title" data-translate-key="statTaskEarnings">Görev Qazancı</div><div class="stat-box-value"><span id="statTaskEarningsVal">0.0000</span> <span class="stat-currency">₼</span></div></div>
+            <div>
+                <div class="stat-box-title" data-translate-key="statTaskEarnings">Görev Qazancı</div>
+                <div class="stat-box-value"><span id="statTaskEarningsVal">0.0000</span> <span class="stat-currency">₼</span></div>
+            </div>
             <div class="stat-icon"><i data-lucide="clipboard-check"></i></div>
         </div>
     </div>
@@ -395,14 +530,28 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
 </div>
 
 <div class="menu">
-  <button onclick="showPage('adsPage',this)" class="active" data-page-id="adsPage"><i data-lucide="house" class="nav-icon"></i><span class="nav-text" data-translate-key="home">Ev</span></button>
-  <button onclick="showPage('tasksPage',this)" data-page-id="tasksPage"><i data-lucide="clipboard-list" class="nav-icon"></i><span class="nav-text" data-translate-key="tasks">Görevler</span></button>
-  <button onclick="showPage('walletPage',this)" data-page-id="walletPage"><i data-lucide="wallet" class="nav-icon"></i><span class="nav-text" data-translate-key="wallet">Cüzdan</span></button>
-  <button onclick="showPage('profilePage',this)" data-page-id="profilePage"><i data-lucide="user" class="nav-icon"></i><span class="nav-text" data-translate-key="profile">Profil</span></button>
+  <button onclick="showPage('adsPage',this)" class="active" data-page-id="adsPage">
+    <i data-lucide="house" class="nav-icon"></i>
+    <span class="nav-text" data-translate-key="home">Ev</span>
+  </button>
+  <button onclick="showPage('tasksPage',this)" data-page-id="tasksPage">
+    <i data-lucide="clipboard-list" class="nav-icon"></i>
+    <span class="nav-text" data-translate-key="tasks">Görevler</span>
+  </button>
+  <button onclick="showPage('walletPage',this)" data-page-id="walletPage">
+    <i data-lucide="wallet" class="nav-icon"></i>
+    <span class="nav-text" data-translate-key="wallet">Cüzdan</span>
+  </button>
+  <button onclick="showPage('profilePage',this)" data-page-id="profilePage">
+    <i data-lucide="user" class="nav-icon"></i>
+    <span class="nav-text" data-translate-key="profile">Profil</span>
+  </button>
 </div>
 
 <script>
+// İKONLARI AKTİVLƏŞDİRMƏK
 lucide.createIcons();
+
 function safeRemove(k){try{localStorage.removeItem(k);}catch(e){}}
 
 const body = document.getElementById('body');
@@ -426,53 +575,52 @@ function toggleTheme() {
 }
 applyTheme(safeGet(THEME_KEY, 'light') === 'dark');
 
-
-// --- İSTİFADƏÇİ MƏLUMATLARININ UID İLƏ AYRILMASI ---
-let userRefId = null;
+// --- YENİLƏNİB: TELEGRAM WEB APP API ENTEQRASİYASI VƏ İSTİFADƏÇİYƏ ÖZƏL MƏLUMAT (MULTI-ACCOUNT) ---
 let tgUser = null;
+let userRefId = null;
 
-if (window.Telegram && window.Telegram.WebApp) {
+if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
     window.Telegram.WebApp.ready();
-    window.Telegram.WebApp.expand(); 
+    window.Telegram.WebApp.expand(); // Mini app tam ekran açılsın
     tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+    userRefId = tgUser.id.toString();
+} else {
+    // Telegramdan kənar giriş üçün test ID-si yadda saxlayırıq
+    userRefId = localStorage.getItem('guest_ref_id');
+    if (!userRefId) {
+        userRefId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        localStorage.setItem('guest_ref_id', userRefId);
+    }
 }
 
+// AÇAR SÖZLƏRİ İSTİFADƏÇİ ID-SİNƏ GÖRƏ DİNAMİK YARADIRIQ
+const USERNAME_KEY = `user_profile_name_${userRefId}`;
+const PROFILE_PIC_KEY = `user_profile_pic_${userRefId}`;
+
 if (tgUser) {
-    userRefId = tgUser.id.toString();
-    localStorage.setItem('last_active_uid', userRefId);
-} else {
-    // Brauzerdən daxil olan test və ya təsadüfi istifadəçilər
-    userRefId = localStorage.getItem('last_active_uid');
-    if (!userRefId) {
-        userRefId = Math.floor(1000000000 + Math.random() * 9000000000).toString(); 
-        localStorage.setItem('last_active_uid', userRefId);
-    }
+    // Telegram Adını (və soyadını) birləşdirib yalnız bu hesaba yazırıq
+    let fullName = tgUser.first_name;
+    if (tgUser.last_name) { fullName += " " + tgUser.last_name; }
+    localStorage.setItem(USERNAME_KEY, fullName);
+    
+    // Telegram profil şəkli varsa onu çəkirik
+    if (tgUser.photo_url) { localStorage.setItem(PROFILE_PIC_KEY, tgUser.photo_url); }
 }
 
 const userRefLink = `https://t.me/manatpayrbot?startapp=${userRefId}`;
 
-// DINAMIK AÇARLAR - Hər bir məlumat istifadəçinin ID-si ilə başlayır
-const USERNAME_KEY = `${userRefId}_profile_name`;
-const PROFILE_PIC_KEY = `${userRefId}_profile_pic`;
-const BAL_KEY = `${userRefId}_bal`;
-const COUNT_KEY = `${userRefId}_cnt`;
-const RESET_KEY = `${userRefId}_resetTime`;
-const JOIN_KEY = `${userRefId}_joined_manat_pay`; 
-const CLAIMED_10K_KEY = `${userRefId}_task_10k_claimed`; 
-const TOTAL_ADS_KEY = `${userRefId}_totalAdsWatched`;
-const TOTAL_AD_EARNINGS_KEY = `${userRefId}_totalAdEarnings`;
-const TOTAL_TASK_EARNINGS_KEY = `${userRefId}_totalTaskEarnings`;
-const REWARD_MSG_KEY = `${userRefId}_rewardMsgExpire`; 
-const HISTORY_KEY = `${userRefId}_withdraw_history`;
-
-// Profil məlumatlarını yeniləyirik
-if (tgUser) {
-    let fullName = tgUser.first_name;
-    if (tgUser.last_name) fullName += " " + tgUser.last_name;
-    localStorage.setItem(USERNAME_KEY, fullName);
-    
-    if (tgUser.photo_url) localStorage.setItem(PROFILE_PIC_KEY, tgUser.photo_url);
-}
+// DATA AÇARLARI HƏR İSTİFADƏÇİ (ID) ÜÇÜN UNİKALDIR!
+const BAL_KEY = `bal_${userRefId}`;
+const COUNT_KEY = `cnt_${userRefId}`;
+const RESET_KEY = `resetTime_${userRefId}`;
+const JOIN_KEY = `joined_manat_pay_${userRefId}`;
+const CLAIMED_10K_KEY = `task_10k_claimed_${userRefId}`;
+const TOTAL_ADS_KEY = `totalAdsWatched_${userRefId}`;
+const TOTAL_AD_EARNINGS_KEY = `totalAdEarnings_${userRefId}`;
+const TOTAL_TASK_EARNINGS_KEY = `totalTaskEarnings_${userRefId}`;
+const REWARD_MSG_KEY = `rewardMsgExpire_${userRefId}`;
+const HISTORY_KEY = `withdraw_history_${userRefId}`;
+// --- BİTDİ ---
 
 
 // --- VALYUTA VƏ MƏZƏNNƏLƏR ---
@@ -488,32 +636,9 @@ const AZN_REWARD = 0.001;
 const AZN_TASK_REWARD = 0.1; 
 const AZN_10K_REWARD = 100;
 
+let withdrawHistory = safeGet(HISTORY_KEY, []);
 let currentLang = localStorage.getItem('lang') || 'az';
 document.getElementById('langSelect').value = currentLang;
-
-let withdrawHistory = safeGet(HISTORY_KEY, []);
-let bal = parseFloat(safeGet(BAL_KEY, -1)); 
-if (bal === -1 || isNaN(bal)) { bal = 0.00; safeSet(BAL_KEY, bal); }
-
-let totalAds = parseInt(safeGet(TOTAL_ADS_KEY, 0));
-let totalAdEarnings = parseFloat(safeGet(TOTAL_AD_EARNINGS_KEY, 0));
-let totalTaskEarnings = parseFloat(safeGet(TOTAL_TASK_EARNINGS_KEY, 0));
-let cnt=parseInt(safeGet(COUNT_KEY,0));
-let resetTime=safeGet(RESET_KEY,null);
-
-let rewardMsgTimeout = null; 
-let isAdRunning = false; 
-
-function getNextResetTime(){
-  const now = new Date();
-  let resetUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 19, 55, 0, 0));
-  if(now.getTime() > resetUTC.getTime()){ resetUTC.setUTCDate(resetUTC.getUTCDate() + 1); }
-  return resetUTC.getTime();
-}
-
-if(!resetTime||Date.now()>resetTime){
-  cnt=0; resetTime=getNextResetTime(); safeSet(RESET_KEY,resetTime); safeSet(COUNT_KEY,cnt);
-}
 
 function localizeAmount(aznAmount, lang) {
     const rates = EXCHANGE_RATES;
@@ -530,7 +655,8 @@ function localizeAmount(aznAmount, lang) {
 
 function getCleanLocalizedAmount(aznAmount, lang) {
     const info = localizeAmount(aznAmount, lang);
-    return `${parseFloat(info.amount).toString()} ${info.symbol}`;
+    let formatted = parseFloat(info.amount).toString(); 
+    return `${formatted} ${info.symbol}`;
 }
 
 function getLocalizedReward(lang) {
@@ -557,82 +683,145 @@ function getLocalizedMinAmount(methodType, lang) {
 
 const TRANSLATIONS = {
     'az': {
-        loading: 'Yüklənir...', yourBalance: 'Balansınız', dailyAdsHeader: 'Günlük Reklamlar', adReward: (r) => `Hər reklama görə ${r} qazanın`, 
-        watched: 'İzlənən', maximum: 'Maksimum', maxCount: '100', progressText: 'İrəliləyiş: ', watchAd: 'Reklam İzle', watching: '⏳ İzlənir...', 
-        adLimitReached: '📣 Gündəlik limitə çatdınız!', rewardAddedConfirmed: (r) => `✅ ${r} əlavə olundu!`, wait: '⏳ {s}s gözləyin',
-        premiumTaskTitle: 'Premium Görev', standardTaskTitle: 'Standart Görev', task10kDesc: '10.000 Reklam izlə və böyük mükafatı qazan!', 
-        taskJoinDesc: 'Rəsmi Telegram kanalımıza qoşul və qazan!', joinChannel: 'Kanala Qoşul', claimReward: 'Mükafatı Al', lockedBtn: 'Kilidli', 
-        completed: 'Tamamlandı', withdrawTitle: 'Çıxarış', bankCard: 'Bank Kartı', back: 'Geri', withdraw: 'Çıxarış Et', methodError: 'Metod seçin', 
-        detailsError: 'Detalları daxil edin', amountError: 'Məbləği düzgün daxil edin', minAmount: (min) => `Minimum məbləğ ${min}`, balanceError: 'Balans kifayət etmir',
-        withdrawSuccess: '✅ Çıxarış göndərildi! 48 saat ərzində yerinə yetiriləcək.', home: 'Ev', tasks: 'Görevler', wallet: 'Cüzdan', profile: 'Profil',
-        placeholderDetails_m10: '10 rəqəmli nömrə', placeholderDetails_azercell: '050xxxxxxx', placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx',
-        placeholderDetails_bank: '16 rəqəmli kart nömrəsi', placeholderDetails_usdt: 'TON adresi', placeholderAmount: 'Məbləğ', taskSuccess: (r) => `✅ Görev Tamamlandı! ${r} balansa əlavə edildi.`,
-        guestUser: 'İstifadəçi', theme: 'Tema', language: 'Dil', statistics: 'Statistika', support: 'Dəstək', statTotalAds: 'İzlənən Ümumi Reklam', 
-        statAdEarnings: 'Reklam Qazancı', statTaskEarnings: 'Görev Qazancı', withdrawHistory: 'Çıxarış Tarixçəsi', pending: 'Gözləmədə', emptyHistory: 'Tarixçə boşdur',
-        shareBtn: 'Dostlarını Dəvət Et', shareMsg: "💰 Mən artıq Manat Pay ilə qazanc əldə edirəm!\n\n📺 Sadəcə reklam izləyərək pul qazanmaq mümkündür. Sən də aşağıdaki linkdən qoşul və qazanc əldə etməyə başla 👇\n\n🔗 {LINK}\n\n📲 Telefonundan reklam izləyərək asan və rahat şəkildə qazanc əldə et.\n\n🔥 Tələsməyi unutma! Yeni istifadəçilər üçün imkanlar və daha çox qazanc növləri tezliklə əlavə olunacaq.\n\n🚀 Fürsəti qaçırma indi başla və Manat Pay ilə qazan!"
+        loading: 'Yüklənir...', yourBalance: 'Balansınız',
+        dailyAdsHeader: 'Günlük Reklamlar', adReward: (r) => `Hər reklama görə ${r} qazanın`, 
+        watched: 'İzlənən', maximum: 'Maksimum', maxCount: '100', progressText: 'İrəliləyiş: ',
+        watchAd: 'Reklam İzle', watching: '⏳ İzlənir...', adLimitReached: '📣 Gündəlik limitə çatdınız!',
+        rewardAddedConfirmed: (r) => `✅ ${r} əlavə olundu!`, wait: '⏳ {s}s gözləyin',
+        premiumTaskTitle: 'Premium Görev', standardTaskTitle: 'Standart Görev',
+        task10kDesc: '10.000 Reklam izlə və böyük mükafatı qazan!', taskJoinDesc: 'Rəsmi Telegram kanalımıza qoşul və qazan!',
+        joinChannel: 'Kanala Qoşul', claimReward: 'Mükafatı Al', lockedBtn: 'Kilidli', completed: 'Tamamlandı',
+        withdrawTitle: 'Çıxarış', bankCard: 'Bank Kartı', back: 'Geri', withdraw: 'Çıxarış Et',
+        methodError: 'Metod seçin', detailsError: 'Detalları daxil edin', amountError: 'Məbləği düzgün daxil edin',
+        minAmount: (min) => `Minimum məbləğ ${min}`, balanceError: 'Balans kifayət etmir',
+        withdrawSuccess: '✅ Çıxarış göndərildi! 48 saat ərzində yerinə yetiriləcək.',
+        home: 'Ev', tasks: 'Görevler', wallet: 'Cüzdan', profile: 'Profil',
+        placeholderDetails_m10: '10 rəqəmli nömrə', placeholderDetails_azercell: '050xxxxxxx',
+        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx',
+        placeholderDetails_bank: '16 rəqəmli kart nömrəsi', placeholderDetails_usdt: 'TON adresi',
+        placeholderAmount: 'Məbləğ', taskSuccess: (r) => `✅ Görev Tamamlandı! ${r} balansa əlavə edildi.`,
+        guestUser: 'İstifadəçi', theme: 'Tema', language: 'Dil', statistics: 'Statistika', support: 'Dəstək',
+        statTotalAds: 'İzlənən Ümumi Reklam', statAdEarnings: 'Reklam Qazancı', statTaskEarnings: 'Görev Qazancı',
+        withdrawHistory: 'Çıxarış Tarixçəsi', pending: 'Gözləmədə', emptyHistory: 'Tarixçə boşdur',
+        shareBtn: 'Dostlarını Dəvət Et',
+        shareMsg: "💰 Mən artıq Manat Pay ilə qazanc əldə edirəm!\n\n📺 Sadəcə reklam izləyərək pul qazanmaq mümkündür. Sən də aşağıdaki linkdən qoşul və qazanc əldə etməyə başla 👇\n\n🔗 {LINK}\n\n📲 Telefonundan reklam izləyərək asan və rahat şəkildə qazanc əldə et.\n\n🔥 Tələsməyi unutma! Yeni istifadəçilər üçün imkanlar və daha çox qazanc növləri tezliklə əlavə olunacaq.\n\n🚀 Fürsəti qaçırma indi başla və Manat Pay ilə qazan!"
     },
     'en': {
-        loading: 'Loading...', yourBalance: 'Your Balance', dailyAdsHeader: 'Daily Ads', adReward: (r) => `Earn ${r} for each ad`, 
-        watched: 'Watched', maximum: 'Maximum', maxCount: '100', progressText: 'Progress: ', watchAd: 'Watch Ad', watching: '⏳ Watching...', 
-        adLimitReached: '📣 Daily limit reached!', rewardAddedConfirmed: (r) => `✅ ${r} added!`, wait: '⏳ {s}s wait', premiumTaskTitle: 'Premium Task', 
-        standardTaskTitle: 'Standard Task', task10kDesc: 'Watch 10,000 Ads and win a huge reward!', taskJoinDesc: 'Join our official Telegram channel and earn!',
-        joinChannel: 'Join Channel', claimReward: 'Claim Reward', lockedBtn: 'Locked', completed: 'Completed', withdrawTitle: 'Withdrawal', bankCard: 'Bank Card', 
-        back: 'Back', withdraw: 'Withdraw', methodError: 'Select a method', detailsError: 'Enter details', amountError: 'Enter correct amount',
-        minAmount: (min) => `Minimum amount ${min}`, balanceError: 'Insufficient balance', withdrawSuccess: '✅ Withdrawal sent! It will be executed within 48 hours.',
-        home: 'Home', tasks: 'Tasks', wallet: 'Wallet', profile: 'Profile', placeholderDetails_m10: '10 digit M10 number', placeholderDetails_azercell: '050xxxxxxx',
-        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx', placeholderDetails_bank: '16 digit card number', placeholderDetails_usdt: 'TON address',
-        placeholderAmount: 'Amount', taskSuccess: (r) => `✅ Task Completed! ${r} added to balance.`, guestUser: 'User', theme: 'Theme', language: 'Language', 
-        statistics: 'Statistics', support: 'Support', statTotalAds: 'Total Ads Watched', statAdEarnings: 'Ad Earnings', statTaskEarnings: 'Task Earnings',
-        withdrawHistory: 'Withdrawal History', pending: 'Pending', emptyHistory: 'History is empty', shareBtn: 'Invite Friends',
+        loading: 'Loading...', yourBalance: 'Your Balance',
+        dailyAdsHeader: 'Daily Ads', adReward: (r) => `Earn ${r} for each ad`, 
+        watched: 'Watched', maximum: 'Maximum', maxCount: '100', progressText: 'Progress: ',
+        watchAd: 'Watch Ad', watching: '⏳ Watching...', adLimitReached: '📣 Daily limit reached!',
+        rewardAddedConfirmed: (r) => `✅ ${r} added!`, wait: '⏳ {s}s wait',
+        premiumTaskTitle: 'Premium Task', standardTaskTitle: 'Standard Task',
+        task10kDesc: 'Watch 10,000 Ads and win a huge reward!', taskJoinDesc: 'Join our official Telegram channel and earn!',
+        joinChannel: 'Join Channel', claimReward: 'Claim Reward', lockedBtn: 'Locked', completed: 'Completed',
+        withdrawTitle: 'Withdrawal', bankCard: 'Bank Card', back: 'Back', withdraw: 'Withdraw',
+        methodError: 'Select a method', detailsError: 'Enter details', amountError: 'Enter correct amount',
+        minAmount: (min) => `Minimum amount ${min}`, balanceError: 'Insufficient balance',
+        withdrawSuccess: '✅ Withdrawal sent! It will be executed within 48 hours.',
+        home: 'Home', tasks: 'Tasks', wallet: 'Wallet', profile: 'Profile',
+        placeholderDetails_m10: '10 digit M10 number', placeholderDetails_azercell: '050xxxxxxx',
+        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx',
+        placeholderDetails_bank: '16 digit card number', placeholderDetails_usdt: 'TON address',
+        placeholderAmount: 'Amount', taskSuccess: (r) => `✅ Task Completed! ${r} added to balance.`,
+        guestUser: 'User', theme: 'Theme', language: 'Language', statistics: 'Statistics', support: 'Support',
+        statTotalAds: 'Total Ads Watched', statAdEarnings: 'Ad Earnings', statTaskEarnings: 'Task Earnings',
+        withdrawHistory: 'Withdrawal History', pending: 'Pending', emptyHistory: 'History is empty',
+        shareBtn: 'Invite Friends',
         shareMsg: "💰 I'm already earning with Manat Pay!\n\n📺 It's possible to earn money just by watching ads. Join from the link below and start earning too 👇\n\n🔗 {LINK}\n\n📲 Earn easily and comfortably by watching ads from your phone.\n\n🔥 Don't forget to hurry! Opportunities for new users and more ways to earn will be added soon.\n\n🚀 Don't miss the opportunity, start now and earn with Manat Pay!"
     },
     'tr': {
-        loading: 'Yükleniyor...', yourBalance: 'Bakiyeniz', dailyAdsHeader: 'Günlük Reklamlar', adReward: (r) => `Her reklam için ${r} kazanın`, 
-        watched: 'İzlenen', maximum: 'Maksimum', maxCount: '100', progressText: 'İlerleme: ', watchAd: 'Reklam İzle', watching: '⏳ İzleniyor...', 
-        adLimitReached: '📣 Günlük sınıra ulaştınız!', rewardAddedConfirmed: (r) => `✅ ${r} eklendi!`, wait: '⏳ {s}sn bekleyin', premiumTaskTitle: 'Premium Görev', 
-        standardTaskTitle: 'Standart Görev', task10kDesc: '10.000 Reklam izle ve büyük ödülü kazan!', taskJoinDesc: 'Resmi Telegram kanalımıza katıl ve kazan!',
-        joinChannel: 'Kanala Katıl', claimReward: 'Ödülü Al', lockedBtn: 'Kilitli', completed: 'Tamamlandı', withdrawTitle: 'Para Çekme', bankCard: 'Banka Kartı', 
-        back: 'Geri', withdraw: 'Para Çek', methodError: 'Yöntem seçin', detailsError: 'Bilgileri girin', amountError: 'Miktarı doğru girin',
-        minAmount: (min) => `Minimum miktar ${min}`, balanceError: 'Yetersiz bakiye', withdrawSuccess: '✅ Çekim talebi gönderildi! 48 saat içinde tamamlanacaktır.',
-        home: 'Ana Sayfa', tasks: 'Görevler', wallet: 'Cüzdan', profile: 'Profil', placeholderDetails_m10: '10 haneli M10 numarası', placeholderDetails_azercell: '050xxxxxxx',
-        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx', placeholderDetails_bank: '16 haneli kart numarası', placeholderDetails_usdt: 'TON adresi',
-        placeholderAmount: 'Miktar', taskSuccess: (r) => `✅ Görev Tamamlandı! ${r} bakiyeye eklendi.`, guestUser: 'Kullanıcı', theme: 'Tema', language: 'Dil', 
-        statistics: 'İstatistikler', support: 'Destek', statTotalAds: 'İzlenen Toplam Reklam', statAdEarnings: 'Reklam Kazancı', statTaskEarnings: 'Görev Kazancı',
-        withdrawHistory: 'Çekim Geçmişi', pending: 'Beklemede', emptyHistory: 'Geçmiş boş', shareBtn: 'Arkadaşlarını Davet Et',
+        loading: 'Yükleniyor...', yourBalance: 'Bakiyeniz',
+        dailyAdsHeader: 'Günlük Reklamlar', adReward: (r) => `Her reklam için ${r} kazanın`, 
+        watched: 'İzlenen', maximum: 'Maksimum', maxCount: '100', progressText: 'İlerleme: ',
+        watchAd: 'Reklam İzle', watching: '⏳ İzleniyor...', adLimitReached: '📣 Günlük sınıra ulaştınız!',
+        rewardAddedConfirmed: (r) => `✅ ${r} eklendi!`, wait: '⏳ {s}sn bekleyin',
+        premiumTaskTitle: 'Premium Görev', standardTaskTitle: 'Standart Görev',
+        task10kDesc: '10.000 Reklam izle ve büyük ödülü kazan!', taskJoinDesc: 'Resmi Telegram kanalımıza katıl ve kazan!',
+        joinChannel: 'Kanala Katıl', claimReward: 'Ödülü Al', lockedBtn: 'Kilitli', completed: 'Tamamlandı',
+        withdrawTitle: 'Para Çekme', bankCard: 'Banka Kartı', back: 'Geri', withdraw: 'Para Çek',
+        methodError: 'Yöntem seçin', detailsError: 'Bilgileri girin', amountError: 'Miktarı doğru girin',
+        minAmount: (min) => `Minimum miktar ${min}`, balanceError: 'Yetersiz bakiye',
+        withdrawSuccess: '✅ Çekim talebi gönderildi! 48 saat içinde tamamlanacaktır.',
+        home: 'Ana Sayfa', tasks: 'Görevler', wallet: 'Cüzdan', profile: 'Profil',
+        placeholderDetails_m10: '10 haneli M10 numarası', placeholderDetails_azercell: '050xxxxxxx',
+        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx',
+        placeholderDetails_bank: '16 haneli kart numarası', placeholderDetails_usdt: 'TON adresi',
+        placeholderAmount: 'Miktar', taskSuccess: (r) => `✅ Görev Tamamlandı! ${r} bakiyeye eklendi.`,
+        guestUser: 'Kullanıcı', theme: 'Tema', language: 'Dil', statistics: 'İstatistikler', support: 'Destek',
+        statTotalAds: 'İzlenen Toplam Reklam', statAdEarnings: 'Reklam Kazancı', statTaskEarnings: 'Görev Kazancı',
+        withdrawHistory: 'Çekim Geçmişi', pending: 'Beklemede', emptyHistory: 'Geçmiş boş',
+        shareBtn: 'Arkadaşlarını Davet Et',
         shareMsg: "💰 Ben şimdiden Manat Pay ile kazanıyorum!\n\n📺 Sadece reklam izleyerek para kazanmak mümkün. Sen de aşağıdaki linkten katıl ve kazanmaya başla 👇\n\n🔗 {LINK}\n\n📲 Telefonundan reklam izleyerek kolay ve rahat bir şekilde kazan.\n\n🔥 Acele etmeyi unutma! Yeni kullanıcılar için fırsatlar ve daha fazla kazanç türü yakında eklenecek.\n\n🚀 Fırsatı kaçırma, şimdi başla ve Manat Pay ile kazan!"
     },
     'ru': { 
-        loading: 'Загрузка...', yourBalance: 'Ваш Баланс', dailyAdsHeader: 'Ежедневная Реклама', adReward: (r) => `Зарабатывайте ${r} за каждую рекламу`, 
-        watched: 'Просмотрено', maximum: 'Максимум', maxCount: '100', progressText: 'Прогресс: ', watchAd: 'Смотреть Рекламу', watching: '⏳ Просмотр...', 
-        adLimitReached: '📣 Достигнут дневной лимит!', rewardAddedConfirmed: (r) => `✅ ${r} добавлено!`, wait: '⏳ {s}с ожидайте', premiumTaskTitle: 'Премиум Задание', 
-        standardTaskTitle: 'Стандартное Задание', task10kDesc: 'Посмотрите 10 000 реклам и получите большую награду!', taskJoinDesc: 'Подпишитесь на наш официальный Telegram канал и заработайте!',
-        joinChannel: 'Подписаться', claimReward: 'Забрать награду', lockedBtn: 'Заблокировано', completed: 'Выполнено', withdrawTitle: 'Вывод Средств', bankCard: 'Банковская Карта', 
-        back: 'Назад', withdraw: 'Вывести', methodError: 'Выберите способ', detailsError: 'Введите данные', amountError: 'Введите правильную сумму',
-        minAmount: (min) => `Минимальная сумма ${min}`, balanceError: 'Недостаточно средств', withdrawSuccess: '✅ Заявка отправлена! Будет исполнена в течение 48 часов.',
-        home: 'Главная', tasks: 'Задания', wallet: 'Кошелек', profile: 'Профиль', placeholderDetails_m10: '10-значный номер M10', placeholderDetails_azercell: '050xxxxxxx',
-        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx', placeholderDetails_bank: '16-значный номер карты', placeholderDetails_usdt: 'TON адрес',
-        placeholderAmount: 'Сумма', taskSuccess: (r) => `✅ Задание выполнено! ${r} добавлено на баланс.`, guestUser: 'Пользователь', theme: 'Тема', language: 'Язык', 
-        statistics: 'Статистика', support: 'Поддержка', statTotalAds: 'Всего просмотрено реклам', statAdEarnings: 'Заработок с рекламы', statTaskEarnings: 'Заработок с заданий',
-        withdrawHistory: 'История Выводов', pending: 'В ожидании', emptyHistory: 'История пуста', shareBtn: 'Пригласить друзей',
+        loading: 'Загрузка...', yourBalance: 'Ваш Баланс',
+        dailyAdsHeader: 'Ежедневная Реклама', adReward: (r) => `Зарабатывайте ${r} за каждую рекламу`, 
+        watched: 'Просмотрено', maximum: 'Максимум', maxCount: '100', progressText: 'Прогресс: ',
+        watchAd: 'Смотреть Рекламу', watching: '⏳ Просмотр...', adLimitReached: '📣 Достигнут дневной лимит!',
+        rewardAddedConfirmed: (r) => `✅ ${r} добавлено!`, wait: '⏳ {s}с ожидайте',
+        premiumTaskTitle: 'Премиум Задание', standardTaskTitle: 'Стандартное Задание',
+        task10kDesc: 'Посмотрите 10 000 реклам и получите большую награду!', taskJoinDesc: 'Подпишитесь на наш официальный Telegram канал и заработайте!',
+        joinChannel: 'Подписаться', claimReward: 'Забрать награду', lockedBtn: 'Заблокировано', completed: 'Выполнено',
+        withdrawTitle: 'Вывод Средств', bankCard: 'Банковская Карта', back: 'Назад', withdraw: 'Вывести',
+        methodError: 'Выберите способ', detailsError: 'Введите данные', amountError: 'Введите правильную сумму',
+        minAmount: (min) => `Минимальная сумма ${min}`, balanceError: 'Недостаточно средств',
+        withdrawSuccess: '✅ Заявка отправлена! Будет исполнена в течение 48 часов.',
+        home: 'Главная', tasks: 'Задания', wallet: 'Кошелек', profile: 'Профиль',
+        placeholderDetails_m10: '10-значный номер M10', placeholderDetails_azercell: '050xxxxxxx',
+        placeholderDetails_bakcell: '055xxxxxxx', placeholderDetails_nar: '070xxxxxxx',
+        placeholderDetails_bank: '16-значный номер карты', placeholderDetails_usdt: 'TON адрес',
+        placeholderAmount: 'Сумма', taskSuccess: (r) => `✅ Задание выполнено! ${r} добавлено на баланс.`,
+        guestUser: 'Пользователь', theme: 'Тема', language: 'Язык', statistics: 'Статистика', support: 'Поддержка',
+        statTotalAds: 'Всего просмотрено реклам', statAdEarnings: 'Заработок с рекламы', statTaskEarnings: 'Заработок с заданий',
+        withdrawHistory: 'История Выводов', pending: 'В ожидании', emptyHistory: 'История пуста',
+        shareBtn: 'Пригласить друзей',
         shareMsg: "💰 Я уже зарабатываю с Manat Pay!\n\n📺 Зарабатывать деньги можно просто просматривая рекламу. Присоединяйтесь по ссылке ниже и начните зарабатывать тоже 👇\n\n🔗 {LINK}\n\n📲 Зарабатывайте легко и удобно, просматривая рекламу с телефона.\n\n🔥 Не забудьте поторопиться! Возможности для новых пользователей и новые способы заработка будут добавлены в ближайшее время.\n\n🚀 Не упустите возможность, начните сейчас и зарабатывайте с Manat Pay!"
     }
 };
 
 const LIMIT = 100;
+let bal = parseFloat(safeGet(BAL_KEY, -1)); 
+if (bal === -1 || isNaN(bal)) { bal = 0.00; safeSet(BAL_KEY, bal); }
+
+let totalAds = parseInt(safeGet(TOTAL_ADS_KEY, 0));
+let totalAdEarnings = parseFloat(safeGet(TOTAL_AD_EARNINGS_KEY, 0));
+let totalTaskEarnings = parseFloat(safeGet(TOTAL_TASK_EARNINGS_KEY, 0));
+let cnt=parseInt(safeGet(COUNT_KEY,0));
+let resetTime=safeGet(RESET_KEY,null);
+
+let rewardMsgTimeout = null; 
+let isAdRunning = false; 
+
+function getNextResetTime(){
+  const now = new Date();
+  let resetUTC = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 19, 55, 0, 0));
+  if(now.getTime() > resetUTC.getTime()){ resetUTC.setUTCDate(resetUTC.getUTCDate() + 1); }
+  return resetUTC.getTime();
+}
+
+if(!resetTime||Date.now()>resetTime){
+  cnt=0; resetTime=getNextResetTime(); safeSet(RESET_KEY,resetTime); safeSet(COUNT_KEY,cnt);
+}
 
 function loadProfilePic() {
     const pic = localStorage.getItem(PROFILE_PIC_KEY);
     const avatar = document.querySelector('.profile-avatar');
     const img = document.getElementById('profileImage');
-    if (pic) { img.src = pic; avatar.classList.add('has-image'); } 
-    else { avatar.classList.remove('has-image'); }
+    if (pic) {
+        img.src = pic;
+        avatar.classList.add('has-image');
+    } else {
+        avatar.classList.remove('has-image');
+    }
 }
 
 function loadProfile() {
     const savedName = localStorage.getItem(USERNAME_KEY);
     const displayEl = document.getElementById('displayUsername');
     if (savedName) {
-        displayEl.textContent = savedName; displayEl.removeAttribute('data-translate-key');
+        displayEl.textContent = savedName;
+        displayEl.removeAttribute('data-translate-key');
     } else {
         displayEl.setAttribute('data-translate-key', 'guestUser');
         applyTranslationToElement(displayEl, 'guestUser', currentLang);
@@ -644,10 +833,13 @@ function loadProfile() {
 function shareOnTelegram() {
     const t = TRANSLATIONS[currentLang];
     const message = t.shareMsg.replace('{LINK}', userRefLink);
-    window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(message)}`, '_blank');
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://t.me/share/url?url=&text=${encodedMessage}`, '_blank');
 }
 
-function openSupport() { window.open('https://t.me/manatpay_support', '_blank'); }
+function openSupport() {
+    window.open('https://t.me/manatpay_support', '_blank');
+}
 
 function showStatsView() {
     document.getElementById('profileMainView').style.display = 'none';
@@ -663,10 +855,13 @@ function hideStatsView() {
 function updateStatsUI() {
     const lang = currentLang;
     document.getElementById('statAdsWatched').textContent = totalAds;
+    
     const adInfo = localizeAmount(totalAdEarnings, lang);
     document.getElementById('statAdEarningsVal').textContent = adInfo.formatted;
+    
     const taskInfo = localizeAmount(totalTaskEarnings, lang);
     document.getElementById('statTaskEarningsVal').textContent = taskInfo.formatted;
+    
     document.querySelectorAll('.stat-currency').forEach(el => el.textContent = adInfo.symbol);
 }
 
@@ -686,11 +881,25 @@ function update(){
   else if (lang === 'ru') { mainBalance = bal * rates.AZN_TO_RUB; secondaryBalance = bal * rates.AZN_TO_USD; mainFormat = (val) => val.toFixed(2); secondaryFormat = (val) => val.toFixed(4); } 
   else { mainBalance = bal; secondaryBalance = bal * rates.AZN_TO_USD; }
   
-  ['balance','balance2','balance3'].forEach(id => document.getElementById(id).textContent = mainFormat(mainBalance));
-  ['currencySymbol','currencySymbol2','currencySymbol3'].forEach(id => document.getElementById(id).textContent = mainSymbol);
-  ['secondaryBalance','secondaryBalance2','secondaryBalance3'].forEach(id => document.getElementById(id).textContent = secondaryFormat(secondaryBalance));
-  ['secondaryCurrencySymbol','secondaryCurrencySymbol2','secondaryCurrencySymbol3'].forEach(id => document.getElementById(id).textContent = secondarySymbol);
-  ['secondaryCurrencyText','secondaryCurrencyText2','secondaryCurrencyText3'].forEach(id => document.getElementById(id).textContent = secondaryText);
+  document.getElementById('balance').textContent = mainFormat(mainBalance);
+  document.getElementById('balance2').textContent = mainFormat(mainBalance);
+  document.getElementById('balance3').textContent = mainFormat(mainBalance);
+
+  document.getElementById('currencySymbol').textContent = mainSymbol;
+  document.getElementById('currencySymbol2').textContent = mainSymbol;
+  document.getElementById('currencySymbol3').textContent = mainSymbol;
+
+  document.getElementById('secondaryBalance').textContent = secondaryFormat(secondaryBalance);
+  document.getElementById('secondaryBalance2').textContent = secondaryFormat(secondaryBalance);
+  document.getElementById('secondaryBalance3').textContent = secondaryFormat(secondaryBalance);
+
+  document.getElementById('secondaryCurrencySymbol').textContent = secondarySymbol;
+  document.getElementById('secondaryCurrencySymbol2').textContent = secondarySymbol;
+  document.getElementById('secondaryCurrencySymbol3').textContent = secondarySymbol;
+
+  document.getElementById('secondaryCurrencyText').textContent = secondaryText;
+  document.getElementById('secondaryCurrencyText2').textContent = secondaryText;
+  document.getElementById('secondaryCurrencyText3').textContent = secondaryText;
 
   document.getElementById('adsCount').textContent=cnt;
   document.getElementById('progress').style.width=(cnt/LIMIT*100)+'%';
@@ -706,6 +915,7 @@ function update(){
   if(document.getElementById('statsView').style.display === 'block') updateStatsUI();
 }
 
+// ÇIXARIŞ TARİXÇƏSİNİ GÖSTƏRMƏK
 function renderHistory() {
     const list = document.getElementById('historyList');
     const t = TRANSLATIONS[currentLang];
@@ -720,8 +930,10 @@ function renderHistory() {
     reversed.forEach(item => {
         const div = document.createElement('div');
         div.className = 'history-item';
+        
         const d = new Date(item.date);
         const dateStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+        const statusText = t[item.status] || item.status;
         
         div.innerHTML = `
             <div class="history-info">
@@ -730,7 +942,7 @@ function renderHistory() {
             </div>
             <div class="history-status-wrap">
                 <div class="history-amount">${item.amount.toFixed(4)} ₼</div>
-                <div class="history-status">${t[item.status] || item.status}</div>
+                <div class="history-status">${statusText}</div>
             </div>
         `;
         list.appendChild(div);
@@ -739,37 +951,47 @@ function renderHistory() {
 
 function updateTaskButtons() {
     const t = TRANSLATIONS[currentLang];
+    
     const joinBtn = document.getElementById('joinBtn');
     const joinBadge = document.getElementById('taskJoinRewardBadge');
     if (joinBadge) joinBadge.innerHTML = getLocalizedTaskReward(currentLang, AZN_TASK_REWARD);
 
     if (joinBtn) {
         if (localStorage.getItem(JOIN_KEY)){
-            joinBtn.className = 'task-btn completed'; joinBtn.disabled = true; 
+            joinBtn.className = 'task-btn completed';
             joinBtn.innerHTML = `<i data-lucide="check-circle" style="width:18px;height:18px;"></i> ${t.completed}`; 
-        } else if (!joinBtn.classList.contains('waiting')) {
-            joinBtn.className = 'task-btn action'; joinBtn.disabled = false; 
-            joinBtn.innerHTML = `<i data-lucide="send" style="width:18px;height:18px;"></i> ${t.joinChannel}`;
+            joinBtn.disabled = true; 
+        } else {
+            if (!joinBtn.classList.contains('waiting')) {
+                 joinBtn.className = 'task-btn action'; joinBtn.disabled = false; 
+                 joinBtn.innerHTML = `<i data-lucide="send" style="width:18px;height:18px;"></i> ${t.joinChannel}`;
+            }
         }
     }
 
     const claim10kBtn = document.getElementById('claim10kBtn');
     const badge10k = document.getElementById('task10kRewardBadge');
+    const progressFill = document.getElementById('task10kProgressFill');
+    const progressText = document.getElementById('task10kProgressText');
+
     if (badge10k) badge10k.innerHTML = getCleanLocalizedAmount(AZN_10K_REWARD, currentLang);
     
-    document.getElementById('task10kProgressText').textContent = `${totalAds} / 10000`;
-    document.getElementById('task10kProgressFill').style.width = Math.min(100, (totalAds / 10000) * 100) + '%';
+    if (progressText) progressText.textContent = `${totalAds} / 10000`;
+    if (progressFill) progressFill.style.width = Math.min(100, (totalAds / 10000) * 100) + '%';
     
     if (claim10kBtn) {
         if (localStorage.getItem(CLAIMED_10K_KEY)) {
-            claim10kBtn.className = 'task-btn completed'; claim10kBtn.disabled = true;
+            claim10kBtn.className = 'task-btn completed';
             claim10kBtn.innerHTML = `<i data-lucide="check-circle" style="width:18px;height:18px;"></i> ${t.completed}`; 
+            claim10kBtn.disabled = true;
         } else if (totalAds >= 10000) {
-            claim10kBtn.className = 'task-btn claim'; claim10kBtn.disabled = false;
+            claim10kBtn.className = 'task-btn claim';
             claim10kBtn.innerHTML = `<i data-lucide="gift" style="width:18px;height:18px;"></i> ${t.claimReward}`; 
+            claim10kBtn.disabled = false;
         } else {
-            claim10kBtn.className = 'task-btn locked'; claim10kBtn.disabled = true;
+            claim10kBtn.className = 'task-btn locked';
             claim10kBtn.innerHTML = `<i data-lucide="lock" style="width:18px;height:18px;"></i> ${t.lockedBtn}`; 
+            claim10kBtn.disabled = true;
         }
     }
     lucide.createIcons(); 
@@ -777,9 +999,12 @@ function updateTaskButtons() {
 
 function setPlaceholders(methodType) {
     const t = TRANSLATIONS[currentLang];
+    const currency = CURRENCIES[currentLang].main;
     const localizedMinAmount = getLocalizedMinAmount(methodType, currentLang); 
-    details.placeholder = t[`placeholderDetails_${methodType}`] || '';
-    amount.placeholder = `${t.placeholderAmount} (${CURRENCIES[currentLang].main}) - ${localizedMinAmount.split(' ')[0]}`; 
+    const detailsKey = `placeholderDetails_${methodType}`;
+    details.placeholder = t[detailsKey] || '';
+    const minTextOnly = localizedMinAmount.split(' ')[0]; 
+    amount.placeholder = `${t.placeholderAmount} (${currency}) - ${minTextOnly}`; 
 }
 
 function applyTranslationToElement(el, key, lang) {
@@ -790,29 +1015,44 @@ function applyTranslationToElement(el, key, lang) {
             el.innerHTML = t[key](`<b>${rewardInfo.formattedReward} ${rewardInfo.symbol}</b>`);
          }
     } else if (t[key]) {
-         if(el.tagName === 'INPUT') el.placeholder = t[key]; else el.innerHTML = t[key];
+         if(el.tagName === 'INPUT') el.placeholder = t[key];
+         else el.innerHTML = t[key];
     }
 }
 
 function applyTranslations(lang) {
     const t = TRANSLATIONS[lang];
     if (!t) return;
-    document.querySelectorAll('[data-translate-key]').forEach(el => { applyTranslationToElement(el, el.getAttribute('data-translate-key'), lang); });
-    
-    updateTaskButtons(); loadProfile(); renderHistory();
-    document.querySelectorAll('.min-withdraw-label').forEach(label => {
-        if (label.getAttribute('data-min-key')) label.textContent = getLocalizedMinAmount(label.getAttribute('data-min-key'), lang); 
+    document.querySelectorAll('[data-translate-key]').forEach(el => {
+        applyTranslationToElement(el, el.getAttribute('data-translate-key'), lang);
     });
+    
+    updateTaskButtons(); 
+    loadProfile();
+    renderHistory();
+
+    document.querySelectorAll('.min-withdraw-label').forEach(label => {
+        const methodType = label.getAttribute('data-min-key');
+        if (methodType) label.textContent = getLocalizedMinAmount(methodType, lang); 
+    });
+    
+    const progressTextSpan = document.getElementById('progressTextSpan');
+    if(progressTextSpan) progressTextSpan.textContent = `${cnt}/${LIMIT}`;
     
     update(); 
     if (document.getElementById('form').style.display === 'block' && type) { setPlaceholders(type); }
     
-    const adBtnWatchSpan = document.querySelector('.ad-btn-content span');
-    if(adBtnWatchSpan) adBtnWatchSpan.textContent = adBtn.classList.contains('waiting') ? t.watching : t.watchAd;
+    const adBtnWatchSpan = adBtnContent.querySelector('span');
+    if(adBtnWatchSpan) {
+        if (adBtn.classList.contains('waiting')) { adBtnWatchSpan.textContent = t.watching; } 
+        else { adBtnWatchSpan.textContent = t.watchAd; }
+    }
 }
 
 function setLang(lang) {
-    currentLang = lang; localStorage.setItem('lang', lang); applyTranslations(lang);
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    applyTranslations(lang);
 }
 
 const adBtn=document.getElementById('adBtn'), msg=document.getElementById('msg');
@@ -828,7 +1068,8 @@ function displayRewardMsg(messageHTML) {
     else {
         rewardMsgElement = document.createElement('div');
         rewardMsgElement.className = 'reward-msg'; rewardMsgElement.id = 'rewardMsg';
-        rewardMsgElement.innerHTML = messageHTML; container.appendChild(rewardMsgElement);
+        rewardMsgElement.innerHTML = messageHTML;
+        container.appendChild(rewardMsgElement);
     }
     rewardMsgElement.classList.remove('show');
     safeSet(REWARD_MSG_KEY, { html: messageHTML, expire: Date.now() + 2500 }); 
@@ -838,7 +1079,8 @@ function displayRewardMsg(messageHTML) {
             rewardMsgElement.classList.remove('show');
             setTimeout(() => { if(rewardMsgElement.parentNode === container) rewardMsgElement.remove(); }, 400); 
         }
-        safeRemove(REWARD_MSG_KEY); rewardMsgTimeout = null;
+        safeRemove(REWARD_MSG_KEY);
+        rewardMsgTimeout = null;
     }, 2500);
 }
 
@@ -880,8 +1122,10 @@ function restoreAdBtnState() {
     const textSpan = adBtnContent.querySelector('span');
     
     if (isAdRunning) {
-        adBtn.classList.add('waiting'); adBtn.disabled = true;
-        if(textSpan) textSpan.textContent = t.watching; return; 
+        adBtn.classList.add('waiting');
+        adBtn.disabled = true;
+        if(textSpan) textSpan.textContent = t.watching;
+        return; 
     }
 
     if (cnt >= LIMIT) {
@@ -892,13 +1136,16 @@ function restoreAdBtnState() {
     
     adBtn.classList.remove('waiting'); adBtn.disabled = false; 
     if(textSpan) textSpan.textContent = t.watchAd;
-    msg.textContent = ''; checkAndDisplayRewardMsg();
+    msg.textContent = '';
+    checkAndDisplayRewardMsg();
 }
 
 adBtn.onclick = async () => {
     const t = TRANSLATIONS[currentLang];
+    
     if (cnt >= LIMIT) { msg.textContent = t.adLimitReached; return; }
     if (isAdRunning || adBtn.classList.contains('waiting')) return;
+    
     isAdRunning = true; 
 
     if (rewardMsgTimeout) { clearTimeout(rewardMsgTimeout); rewardMsgTimeout = null; }
@@ -909,37 +1156,53 @@ adBtn.onclick = async () => {
          setTimeout(() => { const container = document.getElementById('adRewardNotificationContainer'); if(container && rewardMsgElement.parentNode === container) rewardMsgElement.remove(); }, 400); 
     }
     
-    adBtn.disabled = true; adBtn.classList.add('waiting');
+    adBtn.disabled = true; 
+    adBtn.classList.add('waiting');
     const textSpan = adBtnContent.querySelector('span');
-    if(textSpan) textSpan.textContent = t.watching; msg.textContent = '';
+    if(textSpan) textSpan.textContent = t.watching; 
+    msg.textContent = '';
     
     try {
         if (typeof show_10701408 === 'function') {
             const adResult = show_10701408();
             if (adResult && typeof adResult.then === 'function') {
-                await adResult; giveAdReward(t);
-            } else { giveAdReward(t); }
-        } else { resetAdBtnState(t); }
-    } catch(e) { console.error(e); resetAdBtnState(t); } 
+                await adResult;
+                giveAdReward(t);
+            } else {
+                giveAdReward(t); 
+            }
+        } else {
+            resetAdBtnState(t);
+        }
+    } catch(e) {
+        console.error("Ad block or network error", e);
+        resetAdBtnState(t);
+    } 
 };
 
 function giveAdReward(t) {
-    bal += AZN_REWARD; totalAdEarnings += AZN_REWARD; cnt++; totalAds++; update(); 
-    const info = getLocalizedReward(currentLang);
-    displayRewardMsg(t.rewardAddedConfirmed(`<b>${info.formattedReward} ${info.symbol}</b>`));
+    bal += AZN_REWARD; totalAdEarnings += AZN_REWARD; cnt++; totalAds++; 
+    update(); 
+    
+    const currentRewardInfo = getLocalizedReward(currentLang);
+    displayRewardMsg(t.rewardAddedConfirmed(`<b>${currentRewardInfo.formattedReward} ${currentRewardInfo.symbol}</b>`));
+    
     resetAdBtnState(t);
 }
 
 function resetAdBtnState(t) {
-    isAdRunning = false; adBtn.disabled = false; adBtn.classList.remove('waiting');
+    isAdRunning = false; 
+    adBtn.disabled = false; 
+    adBtn.classList.remove('waiting');
     const textSpan = adBtnContent.querySelector('span');
     if(textSpan) textSpan.textContent = t.watchAd; 
-    msg.textContent = cnt >= LIMIT ? t.adLimitReached : ''; 
+    if (cnt >= LIMIT) msg.textContent = t.adLimitReached; else msg.textContent = ''; 
 }
 
 const taskNotification = document.getElementById('taskNotification');
+const taskNotificationText = document.getElementById('taskNotificationText');
 function showTaskNotification(message) {
-    document.getElementById('taskNotificationText').innerHTML = message;
+    taskNotificationText.innerHTML = message;
     taskNotification.classList.remove('notification-hide'); taskNotification.classList.add('notification-show');
     setTimeout(() => { taskNotification.classList.remove('notification-show'); taskNotification.classList.add('notification-hide'); }, 3000);
 }
@@ -958,7 +1221,8 @@ if (joinBtn) {
         setTimeout(() => {
             bal += AZN_TASK_REWARD; totalTaskEarnings += AZN_TASK_REWARD; 
             safeSet(BAL_KEY, bal); safeSet(TOTAL_TASK_EARNINGS_KEY, totalTaskEarnings);
-            localStorage.setItem(JOIN_KEY, '1'); update();
+            localStorage.setItem(JOIN_KEY, '1'); 
+            update();
             showTaskNotification(t.taskSuccess(`<b>${getLocalizedTaskReward(currentLang, AZN_TASK_REWARD)}</b>`));
         }, 3000); 
     };
@@ -968,11 +1232,16 @@ const claim10kBtn = document.getElementById('claim10kBtn');
 if (claim10kBtn) {
     claim10kBtn.addEventListener('click', function() {
         if (localStorage.getItem(CLAIMED_10K_KEY) || this.disabled) return;
+        
         if (totalAds >= 10000) {
             const t = TRANSLATIONS[currentLang];
-            bal += AZN_10K_REWARD; totalTaskEarnings += AZN_10K_REWARD;
-            safeSet(BAL_KEY, bal); safeSet(TOTAL_TASK_EARNINGS_KEY, totalTaskEarnings);
-            localStorage.setItem(CLAIMED_10K_KEY, '1'); update();
+            bal += AZN_10K_REWARD;
+            totalTaskEarnings += AZN_10K_REWARD;
+            safeSet(BAL_KEY, bal);
+            safeSet(TOTAL_TASK_EARNINGS_KEY, totalTaskEarnings);
+            localStorage.setItem(CLAIMED_10K_KEY, '1');
+            
+            update();
             showTaskNotification(t.taskSuccess(`<b>${getCleanLocalizedAmount(AZN_10K_REWARD, currentLang)}</b>`));
         }
     });
@@ -987,15 +1256,21 @@ function showPage(id, btn){
   
   if (id === 'adsPage') { restoreAdBtnState(); } 
   else if (id === 'tasksPage') { updateTaskButtons(); } 
-  else { let rewardMsgElement = document.getElementById('rewardMsg'); if (rewardMsgElement) rewardMsgElement.classList.remove('show'); }
+  else {
+    let rewardMsgElement = document.getElementById('rewardMsg');
+    if (rewardMsgElement) rewardMsgElement.classList.remove('show');
+  }
 }
 
-const form = document.getElementById('form'), details = document.getElementById('details'), amount = document.getElementById('amount'), alertBox = document.getElementById('alert');
+const methods = document.querySelectorAll('.method');
+const form = document.getElementById('form'); const details = document.getElementById('details');
+const amount = document.getElementById('amount'); const alertBox = document.getElementById('alert');
 let type = '';
 
-document.querySelectorAll('.method').forEach(m=>{
+methods.forEach(m=>{
   m.onclick=()=>{
-    type=m.dataset.type; document.getElementById('methods').style.display='none'; form.style.display='block';
+    type=m.dataset.type;
+    document.getElementById('methods').style.display='none'; form.style.display='block';
     setPlaceholders(type); details.value=''; amount.value=''; alertBox.style.display='none';
   };
 });
@@ -1018,32 +1293,59 @@ document.getElementById('withdrawBtn').onclick=()=>{
   else if (currentLang === 'ru') { currentBalanceInLang = bal * EXCHANGE_RATES.AZN_TO_RUB; minAmount = 188; } 
   else { currentBalanceInLang = bal; minAmount = 4; }
   
-  if(amt < minAmount - 0.0001){ showErr(t.minAmount(getLocalizedMinAmount(type, currentLang))); return; }
-  if(amt > currentBalanceInLang + 0.0001){ showErr(t.balanceError); return; }
+  const EPSILON = 0.0001; 
+  if(amt < minAmount - EPSILON){ showErr(t.minAmount(getLocalizedMinAmount(type, currentLang))); return; }
+  if(amt > currentBalanceInLang + EPSILON){ showErr(t.balanceError); return; }
 
-  let withdrawalAmountInAZN = currentLang === 'tr' ? amt / EXCHANGE_RATES.AZN_TO_TRY :
-                              currentLang === 'en' ? amt / EXCHANGE_RATES.AZN_TO_USD :
-                              currentLang === 'ru' ? amt / EXCHANGE_RATES.AZN_TO_RUB : amt; 
+  let withdrawalAmountInAZN = 0;
+  if (currentLang === 'tr') withdrawalAmountInAZN = amt / EXCHANGE_RATES.AZN_TO_TRY;
+  else if (currentLang === 'en') withdrawalAmountInAZN = amt / EXCHANGE_RATES.AZN_TO_USD;
+  else if (currentLang === 'ru') withdrawalAmountInAZN = amt / EXCHANGE_RATES.AZN_TO_RUB;
+  else withdrawalAmountInAZN = amt; 
 
   bal -= withdrawalAmountInAZN; safeSet(BAL_KEY,bal); update();
   
-  withdrawHistory.push({ method: type, amount: withdrawalAmountInAZN, status: 'pending', date: Date.now() });
-  safeSet(HISTORY_KEY, withdrawHistory); renderHistory(); 
+  const historyItem = {
+      method: type,
+      amount: withdrawalAmountInAZN, 
+      status: 'pending', 
+      date: Date.now()
+  };
+  withdrawHistory.push(historyItem);
+  safeSet(HISTORY_KEY, withdrawHistory);
+  renderHistory(); 
 
   alertBox.textContent=t.withdrawSuccess; alertBox.className='alert success'; alertBox.style.display='block';
-  setTimeout(()=>{ form.style.display='none'; document.getElementById('methods').style.display='flex'; alertBox.style.display='none'; type=''; }, 2000);
+
+  setTimeout(()=>{
+    form.style.display='none'; document.getElementById('methods').style.display='flex';
+    alertBox.style.display='none'; type='';
+  }, 2000);
 };
 
 function showErr(msg){ alertBox.textContent=msg; alertBox.className='alert error'; alertBox.style.display='block'; }
 
-update(); applyTranslations(currentLang); restoreAdBtnState();
-setTimeout(()=>{ const s=document.getElementById("loadingScreen"); s.style.opacity="0"; setTimeout(()=>s.style.display="none",700); },3000);
+update();
+applyTranslations(currentLang); 
+restoreAdBtnState();
+
+setTimeout(()=>{
+  const s=document.getElementById("loadingScreen");
+  s.style.opacity="0"; setTimeout(()=>s.style.display="none",700);
+},3000);
 
 const navMenu = document.querySelector('.menu');
 const initialWindowHeight = window.innerHeight;
+
 window.addEventListener('resize', () => {
-    if (window.innerHeight < initialWindowHeight - 100) { navMenu.style.display = 'none'; } 
-    else { navMenu.style.display = 'flex'; if(document.activeElement && document.activeElement.tagName === 'INPUT'){ document.activeElement.blur(); } }
+    if (window.innerHeight < initialWindowHeight - 100) {
+        navMenu.style.display = 'none';
+    } else {
+        navMenu.style.display = 'flex';
+        if(document.activeElement && document.activeElement.tagName === 'INPUT'){
+            document.activeElement.blur();
+        }
+    }
 });
 </script>
 </body>
