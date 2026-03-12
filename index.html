@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
 <title id="pageTitle">Manat Pay</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="//libtl.com/sdk.js" data-zone="10701408" data-sdk="show_10701408"></script>
 <style>
@@ -179,7 +180,7 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .menu button .nav-icon { width: 24px; height: 24px; margin-bottom: 4px; transition: 0.3s; stroke-width: 2.2px; }
 .menu button .nav-text { font-size: 11px; font-weight: 800; line-height: 1.2; }
 .menu button.active{background:linear-gradient(135deg,var(--btn-gradient-start),var(--btn-gradient-end));color: var(--text-light);box-shadow:0 6px 15px var(--btn-shadow);cursor: default; pointer-events: none; opacity: 1;transform: translateY(-5px);}
-.menu button.active .nav-icon { stroke-width: 2.5px; } /* Aktiv olanda ikon biraz daha qalınlaşır */
+.menu button.active .nav-icon { stroke-width: 2.5px; } 
 .menu button:not(.active):hover { opacity: 1; transform: translateY(-2px); }
 
 /* --- PROFIL SƏHİFƏSİ & AYARLAR STİLİ --- */
@@ -191,6 +192,7 @@ body.dark-theme .task-item.premium { background: linear-gradient(135deg, rgba(24
 .profile-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none; }
 .profile-avatar.has-image img { display: block; }
 .profile-avatar.has-image .default-icon { display: none; }
+/* QEYD: Əgər məlumat Telegramdan gəlirsə kamera butonunu silə bilərik, amma qalmağı da problem deyil */
 .avatar-edit-icon { position: absolute; bottom: 0; right: -5px; background: var(--card-bg); color: var(--text-dark); border: 1px solid var(--card-border); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 2; transition: 0.2s;}
 .avatar-edit-icon i { width: 14px; height: 14px; }
 .profile-avatar:hover .avatar-edit-icon { transform: scale(1.1); }
@@ -321,7 +323,6 @@ if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-th
 </div>
 
 <div class="container">
-  
   <div id="adsPage" class="page active">
     <div class="balance-card">
       <h3 data-translate-key="yourBalance">Balansınız</h3>
@@ -599,14 +600,47 @@ function toggleTheme() {
 }
 applyTheme(safeGet(THEME_KEY, 'light') === 'dark');
 
-// --- UNİKAL LİNK ÜÇÜN REFERAL İD YARADILMASI ---
+const USERNAME_KEY = 'user_profile_name';
+const PROFILE_PIC_KEY = 'user_profile_pic';
 const REF_KEY = 'user_referral_id';
+
+// --- YENİLƏNİB: TELEGRAM WEB APP API ENTEQRASİYASI ---
 let userRefId = localStorage.getItem(REF_KEY);
-if (!userRefId) {
-    userRefId = Math.floor(1000000000 + Math.random() * 9000000000).toString(); 
-    localStorage.setItem(REF_KEY, userRefId);
+let tgUser = null;
+
+if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.ready();
+    window.Telegram.WebApp.expand(); // Mini app tam ekran açılsın
+    tgUser = window.Telegram.WebApp.initDataUnsafe.user;
 }
+
+if (tgUser) {
+    // 1. İstifadəçinin Telegram ID-sini götürüb referal ID edirik
+    userRefId = tgUser.id.toString();
+    localStorage.setItem(REF_KEY, userRefId);
+    
+    // 2. Telegram Adını (və soyadını) birləşdirib yadda saxlayırıq
+    let fullName = tgUser.first_name;
+    if (tgUser.last_name) {
+        fullName += " " + tgUser.last_name;
+    }
+    localStorage.setItem(USERNAME_KEY, fullName);
+    
+    // 3. Telegram profil şəkli varsa onu çəkirik
+    if (tgUser.photo_url) {
+        localStorage.setItem(PROFILE_PIC_KEY, tgUser.photo_url);
+    }
+} else {
+    // Əgər istifadəçi Telegramdan yox, normal brauzerdən daxil olubsa (Məs: Test üçün)
+    if (!userRefId) {
+        userRefId = Math.floor(1000000000 + Math.random() * 9000000000).toString(); 
+        localStorage.setItem(REF_KEY, userRefId);
+    }
+}
+
 const userRefLink = `https://t.me/manatpayrbot?startapp=${userRefId}`;
+// --- BİTDİ ---
+
 
 // --- VALYUTA VƏ MƏZƏNNƏLƏR ---
 const EXCHANGE_RATES = { AZN_TO_USD: 0.59, AZN_TO_TRY: 25.00, AZN_TO_RUB: 46.45 };
@@ -627,9 +661,7 @@ const CLAIMED_10K_KEY = 'task_10k_claimed';
 const TOTAL_ADS_KEY = 'totalAdsWatched';
 const TOTAL_AD_EARNINGS_KEY = 'totalAdEarnings';
 const TOTAL_TASK_EARNINGS_KEY = 'totalTaskEarnings';
-const USERNAME_KEY = 'user_profile_name';
 const REWARD_MSG_KEY = 'rewardMsgExpire'; 
-const PROFILE_PIC_KEY = 'user_profile_pic';
 const HISTORY_KEY = 'withdraw_history';
 
 let withdrawHistory = safeGet(HISTORY_KEY, []);
@@ -1394,20 +1426,14 @@ setTimeout(()=>{
   s.style.opacity="0"; setTimeout(()=>s.style.display="none",700);
 },3000);
 
-// --- YENİ: KLAVİATURA (KEYBOARD) DETEKTORU ---
-// Ekranın ölçüsü kiçildikdə (Klaviatura açılanda) menyunu gizlət, 
-// bağlandıqda (Geri düyməsi sıxıldıqda və ya focusdan çıxdıqda) göstər
 const navMenu = document.querySelector('.menu');
 const initialWindowHeight = window.innerHeight;
 
 window.addEventListener('resize', () => {
-    // Əgər ekranın hündürlüyü əvvəlkindən xeyli kiçildisə (klaviatura açıldı)
     if (window.innerHeight < initialWindowHeight - 100) {
         navMenu.style.display = 'none';
     } else {
-        // Ekran normal formasına qayıtdı (Klaviatura bağlandı)
         navMenu.style.display = 'flex';
-        // Əgər istifadəçi geri düyməsini sıxaraq klaviaturanı bağlayıbsa, focusu inputdan götür
         if(document.activeElement && document.activeElement.tagName === 'INPUT'){
             document.activeElement.blur();
         }
