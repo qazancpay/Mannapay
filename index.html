@@ -284,10 +284,28 @@ body.dark-theme .toggle-thumb i { color: #2c3e50; }
 <body id="body">
 
 <script>
-// TEMA TƏTBİQİ (Hər kəs üçün ortaq ola bilər, cihazın yaddaşında qalır)
+// --- İSTİFADƏÇİ ID-Sİ VƏ ŞƏXSİLƏŞDİRİLMİŞ AYARLAR ÜÇÜN İLKİN QURULUM ---
 function safeGet(k,d=0){try{return JSON.parse(localStorage.getItem(k))??d;}catch{return d;}}
 function safeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
-const THEME_KEY = 'theme';
+
+let tgUser = null;
+let userRefId = null;
+
+if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+    tgUser = window.Telegram.WebApp.initDataUnsafe.user;
+    userRefId = tgUser.id.toString();
+} else {
+    userRefId = localStorage.getItem('guest_ref_id');
+    if (!userRefId) {
+        userRefId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
+        localStorage.setItem('guest_ref_id', userRefId);
+    }
+}
+
+// TEMA VƏ DİL AÇARLARI İSTİFADƏÇİ ID-SİNƏ BAĞLANIR (Multi-Account Fix)
+const THEME_KEY = 'theme_' + userRefId;
+const LANG_KEY = 'lang_' + userRefId;
+
 const savedTheme = safeGet(THEME_KEY, 'light');
 if(savedTheme === 'dark') document.getElementById('body').classList.add('dark-theme');
 </script>
@@ -560,11 +578,11 @@ const themeThumb = document.getElementById('themeThumb');
 function applyTheme(isDark) {
     if (isDark) {
         body.classList.add('dark-theme');
-        themeThumb.innerHTML = '<i data-lucide="moon" style="width:14px;height:14px;"></i>'; 
+        if(themeThumb) themeThumb.innerHTML = '<i data-lucide="moon" style="width:14px;height:14px;"></i>'; 
         safeSet(THEME_KEY, 'dark');
     } else {
         body.classList.remove('dark-theme');
-        themeThumb.innerHTML = '<i data-lucide="sun" style="width:14px;height:14px;"></i>'; 
+        if(themeThumb) themeThumb.innerHTML = '<i data-lucide="sun" style="width:14px;height:14px;"></i>'; 
         safeSet(THEME_KEY, 'light');
     }
     lucide.createIcons(); 
@@ -575,35 +593,19 @@ function toggleTheme() {
 }
 applyTheme(safeGet(THEME_KEY, 'light') === 'dark');
 
-// --- YENİLƏNİB: TELEGRAM WEB APP API ENTEQRASİYASI VƏ İSTİFADƏÇİYƏ ÖZƏL MƏLUMAT (MULTI-ACCOUNT) ---
-let tgUser = null;
-let userRefId = null;
-
-if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe && window.Telegram.WebApp.initDataUnsafe.user) {
+// --- TELEGRAM WEB APP YENİLƏNMƏSİ VƏ ŞƏXSİ MƏLUMATLAR ---
+if (window.Telegram && window.Telegram.WebApp) {
     window.Telegram.WebApp.ready();
-    window.Telegram.WebApp.expand(); // Mini app tam ekran açılsın
-    tgUser = window.Telegram.WebApp.initDataUnsafe.user;
-    userRefId = tgUser.id.toString();
-} else {
-    // Telegramdan kənar giriş üçün test ID-si yadda saxlayırıq
-    userRefId = localStorage.getItem('guest_ref_id');
-    if (!userRefId) {
-        userRefId = Math.floor(1000000000 + Math.random() * 9000000000).toString();
-        localStorage.setItem('guest_ref_id', userRefId);
-    }
+    window.Telegram.WebApp.expand(); 
 }
 
-// AÇAR SÖZLƏRİ İSTİFADƏÇİ ID-SİNƏ GÖRƏ DİNAMİK YARADIRIQ
 const USERNAME_KEY = `user_profile_name_${userRefId}`;
 const PROFILE_PIC_KEY = `user_profile_pic_${userRefId}`;
 
 if (tgUser) {
-    // Telegram Adını (və soyadını) birləşdirib yalnız bu hesaba yazırıq
     let fullName = tgUser.first_name;
     if (tgUser.last_name) { fullName += " " + tgUser.last_name; }
     localStorage.setItem(USERNAME_KEY, fullName);
-    
-    // Telegram profil şəkli varsa onu çəkirik
     if (tgUser.photo_url) { localStorage.setItem(PROFILE_PIC_KEY, tgUser.photo_url); }
 }
 
@@ -620,8 +622,6 @@ const TOTAL_AD_EARNINGS_KEY = `totalAdEarnings_${userRefId}`;
 const TOTAL_TASK_EARNINGS_KEY = `totalTaskEarnings_${userRefId}`;
 const REWARD_MSG_KEY = `rewardMsgExpire_${userRefId}`;
 const HISTORY_KEY = `withdraw_history_${userRefId}`;
-// --- BİTDİ ---
-
 
 // --- VALYUTA VƏ MƏZƏNNƏLƏR ---
 const EXCHANGE_RATES = { AZN_TO_USD: 0.59, AZN_TO_TRY: 25.00, AZN_TO_RUB: 46.45 };
@@ -637,7 +637,7 @@ const AZN_TASK_REWARD = 0.1;
 const AZN_10K_REWARD = 100;
 
 let withdrawHistory = safeGet(HISTORY_KEY, []);
-let currentLang = localStorage.getItem('lang') || 'az';
+let currentLang = localStorage.getItem(LANG_KEY) || 'az';
 document.getElementById('langSelect').value = currentLang;
 
 function localizeAmount(aznAmount, lang) {
@@ -915,7 +915,6 @@ function update(){
   if(document.getElementById('statsView').style.display === 'block') updateStatsUI();
 }
 
-// ÇIXARIŞ TARİXÇƏSİNİ GÖSTƏRMƏK
 function renderHistory() {
     const list = document.getElementById('historyList');
     const t = TRANSLATIONS[currentLang];
@@ -1049,9 +1048,10 @@ function applyTranslations(lang) {
     }
 }
 
+// DİL SEÇİMİ İSTİFADƏÇİ ID-SİNƏ BAĞLANIR
 function setLang(lang) {
     currentLang = lang;
-    localStorage.setItem('lang', lang);
+    localStorage.setItem(LANG_KEY, lang);
     applyTranslations(lang);
 }
 
